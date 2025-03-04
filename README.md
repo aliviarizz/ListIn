@@ -27,10 +27,12 @@ For detailed documentation, refer to the files linked below (written in Indonesi
 ---
 
 ## 🤝 Contributors
-| Contributor       | GitHub Profile                                  |
-|-------------------|------------------------------------------------|
-| **Adia Sandra**  | [🌐 Profile](https://github.com/sandraalmeera) |
-| **Yessica**      | [🌐 Profile](https://github.com/yesicafapa)    |
+| Contributor          | GitHub Profile                                            |
+|----------------------|-----------------------------------------------------------|
+| **Alivia Rizka W**   | [🌐 Profile](https://github.com/aliviarizz)              |
+| **Andrian M**        | [🌐 Profile](https://github.com/driannmlnaa)             |
+| **Irham Najib A. Q** | [🌐 Profile](https://github.com/Irham-Najib-Azimul-Qowi) |
+
 
 ---
 
@@ -48,7 +50,7 @@ We hope this repository provides a clear understanding of our project. 😊
 ## 🚀 How to Use
 1. Clone this repository locally:
    ```bash
-   git clone https://github.com/AbidRafiul/UAS_Kelompok2.git
+   https://github.com/aliviarizz/Kelompok-9-list-tugas.git
    ```
 2. Open the document files in the "Dokumen UAS" folder.
 3. Follow the system usage manual for further information.
