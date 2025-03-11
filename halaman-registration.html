@@ -4,28 +4,74 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Register - ListIn</title>
-    <script src="https:cdn.tailwindcss.com"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
-<body class="flex items-center justify-center min-h-screen bg-[#474988]">
-    <div class="bg-white p-8 rounded-lg shadow-lg w-full max-w-md">
-        <h2 class="text-2xl font-bold text-[#7e47b8]">Register - ListIn</h2>
-        <form action="{{ route ('register') }}" method="post" class="mt-6">
-            @csrf
-            <div>
-                <label class="block text-gray-700">Nama</label>
-                <input type="text" name="name" required class="w-full px-4 py-2 border rounded-md focus:ring-2 focus:ring-[#b647b8]">
-            </div>
-            <div class="mb-4">
-                <label class="block text-gray-700">Email</label>
-                <input type="email" name="email" required class="w-full px-4 py-2 border rounded-md focus:ring-2 focus:ring-[#b647b8]">
-            </div>
-            <div class="mb-4">
-                <label class="block text-gray-700">Password</label>
-                <input type="password" name="password" required class="w-full px-4 py-2 border rounded-md focus:ring-2 focus:ring-[#b647b8]">
-            </div>
-            <button type="submit" class="w-full bg-[#7e47b8] text-white py-2 rounded-md hover:bg-[#7E47B8]">Daftar</button>
-        </form>
-        <p class="mt-4 text-center text-gray-600">Sudah punya akun? <a href="{{ route('login') }}" class="text-[#b647b8] hover:underline">Login</a></p>
+<body class="d-flex align-items-center justify-content-center vh-100">
+
+    <div class="container">
+        <div class="row justify-content-center">
+                <div class="container">
+                    <div class="row g-0"> 
+                        <!-- Bagian Sambutan -->
+                        <div class="col-md-6 d-flex align-items-center justify-content-center text-white bg-gradient bg-primary p-4 rounded-4 shadow-lg">
+                            <div class="text-center">
+                                <h1 id="welcome-text" class="fw-bold"></h1>
+                                <p id="animated-text" 
+                                    style="display: block; opacity: 0; transform: translateY(-10px); transition: opacity 1.5s ease-out, transform 1.5s ease-out; height: 1.5em;">
+                                </p>
+                            </div>
+                        </div>                        
+                        <div class="col-md-6">
+                            <div class="shadow-lg p-4 rounded-4">
+                                <h2 class="text-center mb-4 text-primary" style="color: #474988;">Daftar List-In</h2>
+                                <form>
+                                    <div class="mb-3">
+                                        <label for="name" class="form-label">Nama</label>
+                                        <input type="text" class="form-control" id="name" placeholder="Masukkan nama" required>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="email" class="form-label">Email</label>
+                                        <input type="email" class="form-control" id="email" placeholder="Masukkan email" required>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="password" class="form-label">Password</label>
+                                        <input type="password" class="form-control" id="password" placeholder="Masukkan password" required>
+                                    </div>
+                                    <button type="submit" class="btn btn-primary w-100">Daftar</button>
+                                    <p class="text-center mt-3">Sudah punya akun? <a href="halaman-registration.html">Login</a></p>
+                                </form>
+                            </div>
+                        </div>
+                </div>       
+        </div>
     </div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            let welcomeText = document.getElementById("welcome-text");
+            let animatedText = document.getElementById("animated-text");
+
+            let welcomeString = "Selamat Datang di List-In";
+            let index = 0;
+
+            function typeWelcomeText() {
+                if (index < welcomeString.length) {
+                    welcomeText.innerHTML += welcomeString[index];
+                    index++;
+                    setTimeout(typeWelcomeText, 50); // Efek ketik per huruf
+                } else {
+                    // Setelah teks pertama selesai, mulai animasi fade-in teks kedua
+                    setTimeout(() => {
+                        animatedText.innerHTML = "Kelola daftar tugasmu dengan mudah dan menyenangkan!";
+                        animatedText.style.opacity = "1";
+                        animatedText.style.transform = "translateY(0)";
+                    }, 500); // Jeda 0.5 detik setelah teks pertama selesai
+                }
+            }
+
+            typeWelcomeText(); // Mulai animasi huruf per huruf
+        });
+    </script>
+    
 </body>
 </html>
