@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login & Register</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, #f7f7f7, #e0e7ff);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            overflow: hidden;
+        }
+
+        .container {
+            display: flex;
+            width: 100%;
+            max-width: 1000px;
+            background: #fff;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+            overflow: hidden;
+        }
+
+        .welcome-section, .form-section {
+            flex: 1;
+            padding: 40px;
+            height: 600px; /* Tinggi tetap untuk kedua bagian */
+        }
+
+        /* Welcome Section */
+        .welcome-section {
+            background: linear-gradient(135deg, #B647B8, #6a1b9a);
+            color: white;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .welcome-section h2 {
+            font-size: 32px;
+            font-weight: 600;
+            margin-bottom: 20px;
+            animation: slideIn 1s ease-out forwards;
+        }
+
+        .welcome-section p {
+            font-size: 16px;
+            opacity: 0.9;
+            line-height: 1.6;
+            animation: fadeIn 1.5s ease-out forwards;
+            animation-delay: 0.5s;
+            opacity: 0;
+        }
+
+        /* Animasi untuk teks */
+        @keyframes slideIn {
+            from {
+                transform: translateY(20px);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+            to {
+                opacity: 0.9;
+                transform: translateY(0);
+            }
+        }
+
+        .welcome-section::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255, 255, 255, 0.2) 0%, transparent 70%);
+            animation: rotate 15s linear infinite;
+        }
+
+        @keyframes rotate {
+            from {
+                transform: rotate(0deg);
+            }
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+        /* Form Section */
+        .form-section {
+            background: #fff;
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+            padding-top: 20px; /* Kurangi padding atas agar form lebih terlihat */
+        }
+
+        .form-section h2 {
+            font-size: 28px;
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 15px;
+            text-align: center;
+            background: linear-gradient(90deg, #B647B8, #6a1b9a);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        /* Tombol Pintasan */
+        .toggle-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+
+        .toggle-btn {
+            background: linear-gradient(135deg, #ff6f61, #ff3d00);
+            color: white;
+            border: none;
+            padding: 8px 20px;
+            border-radius: 20px;
+            font-size: 14px;
+            font-weight: 500;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .toggle-btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .toggle-btn i {
+            font-size: 14px;
+        }
+
+        .toggle-btn.active {
+            background: linear-gradient(135deg, #6a1b9a, #B647B8);
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+            position: relative;
+        }
+
+        .form-group label {
+            display: block;
+            font-size: 14px;
+            color: #555;
+            margin-bottom: 8px;
+            font-weight: 500;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 12px 12px 12px 40px; /* Sesuaikan padding agar ikon tidak menutupi teks */
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            font-size: 14px;
+            outline: none;
+            transition: border-color 0.3s ease, box-shadow 0.3s ease;
+            background: #f9f9f9;
+        }
+
+        .form-group input:focus {
+            border-color: #B647B8;
+            box-shadow: 0 0 8px rgba(182, 71, 184, 0.2);
+        }
+
+        .form-group i {
+            position: absolute;
+            top: 38px; /* Sesuaikan posisi ikon agar sejajar dengan input */
+            left: 12px;
+            color: #B647B8;
+            font-size: 16px;
+        }
+
+        .form-group.checkbox {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .form-group.checkbox input {
+            width: auto;
+            padding: 0;
+        }
+
+        .form-group.checkbox label {
+            margin-bottom: 0;
+            font-size: 14px;
+            color: #666;
+        }
+
+        .form-section a {
+            text-decoration: none;
+            color: #B647B8;
+            font-size: 14px;
+            font-weight: 500;
+        }
+
+        .form-section a:hover {
+            text-decoration: underline;
+        }
+
+        .google-login {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            margin-top: 20px;
+            font-size: 14px;
+            color: #666;
+        }
+
+        .google-login img {
+            width: 20px;
+            height: 20px;
+        }
+
+        .button {
+            width: 100%;
+            padding: 12px;
+            border: none;
+            border-radius: 10px;
+            font-size: 16px;
+            font-weight: 500;
+            cursor: pointer;
+            background: linear-gradient(90deg, #B647B8, #6a1b9a);
+            color: white;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            margin-top: 20px;
+        }
+
+        .button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(182, 71, 184, 0.3);
+        }
+
+        /* Responsivitas */
+        @media (max-width: 768px) {
+            .container {
+                flex-direction: column;
+                max-width: 500px;
+            }
+
+            .welcome-section, .form-section {
+                padding: 30px;
+                height: auto;
+                min-height: 300px;
+            }
+
+            .welcome-section {
+                border-radius: 20px 20px 0 0;
+            }
+
+            .form-section {
+                border-radius: 0 0 20px 20px;
+            }
+
+            .toggle-buttons {
+                gap: 10px;
+            }
+
+            .toggle-btn {
+                padding: 8px 15px;
+                font-size: 12px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Halaman Daftar -->
+    <div class="container" id="register-page">
+        <div class="welcome-section">
+            <h2>Selamat Datang di List In</h2>
+            <p>Silahkan mendaftar dan coba fitur kami untuk mengelola tugas Anda dengan lebih mudah dan efisien. Bergabung sekarang untuk memulai perjalanan produktivitas Anda!</p>
+        </div>
+        <div class="form-section">
+            <h2>Daftar</h2>
+            <div class="toggle-buttons">
+                <button class="toggle-btn active" onclick="showPage('register-page')">
+                    <i class="fas fa-user-plus"></i> Daftar
+                </button>
+                <button class="toggle-btn" onclick="showPage('login-page')">
+                    <i class="fas fa-sign-in-alt"></i> Masuk
+                </button>
+            </div>
+            <form>
+                <div class="form-group">
+                    <label for="nama-depan">Nama Depan</label>
+                    <i class="fas fa-user"></i>
+                    <input type="text" id="nama-depan" placeholder="Masukkan nama depan" required>
+                </div>
+                <div class="form-group">
+                    <label for="nama-belakang">Nama Belakang</label>
+                    <i class="fas fa-user"></i>
+                    <input type="text" id="nama-belakang" placeholder="Masukkan nama belakang" required>
+                </div>
+                <div class="form-group">
+                    <label for="nama-pengguna">Nama Pengguna</label>
+                    <i class="fas fa-user"></i>
+                    <input type="text" id="nama-pengguna" placeholder="Masukkan nama pengguna" required>
+                </div>
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <i class="fas fa-envelope"></i>
+                    <input type="email" id="email" placeholder="Masukkan email Anda" required>
+                </div>
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <i class="fas fa-lock"></i>
+                    <input type="password" id="password" placeholder="Masukkan password" required>
+                </div>
+                <div class="form-group">
+                    <label for="confirm-password">Konfirmasi Password</label>
+                    <i class="fas fa-lock"></i>
+                    <input type="password" id="confirm-password" placeholder="Konfirmasi password" required>
+                </div>
+                <div class="form-group checkbox">
+                    <input type="checkbox" id="setuju">
+                    <label for="setuju">Setuju dengan syarat</label>
+                </div>
+                <button type="submit" class="button">Daftar</button>
+                <div class="google-login">
+                    <span>Atau Login Dengan </span>
+                    <img src="https://www.google.com/favicon.ico" alt="Google">
+                    <span> Sudah Punya Akun?</span>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Halaman Masuk -->
+    <div class="container" id="login-page" style="display: none;">
+        <div class="form-section">
+            <h2>Masuk</h2>
+            <div class="toggle-buttons">
+                <button class="toggle-btn" onclick="showPage('register-page')">
+                    <i class="fas fa-user-plus"></i> Daftar
+                </button>
+                <button class="toggle-btn active" onclick="showPage('login-page')">
+                    <i class="fas fa-sign-in-alt"></i> Masuk
+                </button>
+            </div>
+            <form>
+                <div class="form-group">
+                    <label for="login-nama-pengguna">Nama Pengguna</label>
+                    <i class="fas fa-user"></i>
+                    <input type="text" id="login-nama-pengguna" placeholder="Masukkan nama pengguna" required>
+                </div>
+                <div class="form-group">
+                    <label for="login-password">Password</label>
+                    <i class="fas fa-lock"></i>
+                    <input type="password" id="login-password" placeholder="Masukkan password" required>
+                </div>
+                <div class="form-group checkbox">
+                    <input type="checkbox" id="ingat-saya">
+                    <label for="ingat-saya">Ingat Saya</label>
+                    <a href="#" style="margin-left: auto;">Lupa Password?</a>
+                </div>
+                <button type="submit" class="button">Login</button>
+                <div class="google-login">
+                    <span>Atau Login Dengan </span>
+                    <img src="https://www.google.com/favicon.ico" alt="Google">
+                    <span>Belum Punya Akun?</span>
+                </div>
+            </form>
+        </div>
+        <div class="welcome-section">
+            <h2>Selamat Datang Kembali, Amanuel!</h2>
+            <p>Masuk untuk melanjutkan mengelola tugas Anda di List In. Kami senang Anda kembali, mari selesaikan pekerjaan Anda dan capai produktivitas maksimal!</p>
+        </div>
+    </div>
+
+    <script>
+        // Fungsi untuk beralih antara halaman Daftar dan Masuk
+        function showPage(pageId) {
+            const registerPage = document.getElementById('register-page');
+            const loginPage = document.getElementById('login-page');
+            const toggleButtons = document.querySelectorAll('.toggle-btn');
+
+            if (pageId === 'register-page') {
+                registerPage.style.display = 'flex';
+                loginPage.style.display = 'none';
+                toggleButtons.forEach(btn => {
+                    if (btn.textContent.includes('Daftar')) btn.classList.add('active');
+                    else btn.classList.remove('active');
+                });
+            } else {
+                registerPage.style.display = 'none';
+                loginPage.style.display = 'flex';
+                toggleButtons.forEach(btn => {
+                    if (btn.textContent.includes('Masuk')) btn.classList.add('active');
+                    else btn.classList.remove('active');
+                });
+            }
+        }
+
+        // Tambahkan event listener untuk tautan "Sudah Punya Akun? " dan "Belum Punya Akun? "
+        document.querySelectorAll('.google-login span:last-child').forEach(link => {
+            link.style.cursor = 'pointer';
+            link.style.color = '#B647B8';
+            link.addEventListener('click', () => {
+                showPage(link.textContent.includes('Masuk') ? 'login-page' : 'register-page');
+            });
+        });
+    </script>
+</head>
+<body>
+</body>
+</html>
