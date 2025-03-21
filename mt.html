@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LIST LN</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+    <style>
+        /* Reset dan Base Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+        
+        body {
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            background: #7E47B8;
+            overflow-x: hidden;
+        }
+
+        /* Header */
+        .header {
+            background: linear-gradient(90deg, #7E47B8, rgb(228, 225, 225));
+            width: 100%;
+            color: white;
+            padding: 15px 30px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        /* Container */
+        .container {
+            display: flex;
+            flex: 1;
+            
+        }
+
+        /* Sidebar */
+        .sidebar {
+            width: 250px;
+            background-color: #fff;
+            padding: 40px 20px ;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+        }
+
+        .sidebar h4 {
+            margin-bottom: 20px;
+            margin-right: 100px;
+            font-size: 18px;
+        }
+
+        .sidebar h4 a {
+            color: black;
+            text-decoration: none;
+            padding: 10px 10px 10px 5px;
+            margin-right: 100px;
+            display: block;
+            border-radius: 5px;
+        }
+
+        .sidebar h4 a:hover {
+            text-decoration: underline;
+        }
+
+        .sidebar h4 a.active {
+            background-color: #7E47B8;
+            color: white;
+            padding-right: 150%;
+        }
+
+        /* Content */
+        .content {
+            flex: 1;
+            padding: 30px;
+            background: #fff;
+            border-radius: 15px;
+            margin: 20px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .sidebar {
+                width: 200px;
+                position: fixed;
+                height: 100%;
+                top: 0;
+                left: 0;
+                z-index: 200;
+            }
+
+            .content {
+                margin-left: 0;
+            }
+        }
+
+        .table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        .table th, .table td {
+            padding: 30px;
+            border: 1px solid #ddd;
+            text-align: left;
+        }
+        .table th {
+            background: #4749B8;
+            color: white;
+        }
+        .actions {
+            display: flex;
+            gap: 5px;
+        }
+        .edit, .delete, .add {
+            border: none;
+            padding: 5px 10px;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+        .edit { background: #3498db; color: white; }
+        .delete { background: #e74c3c; color: white; }
+        .add { background: #7E47B8; color: white; padding: 1%; margin-bottom: 1%; margin-top: 1%;}
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <h1>List LN</h1>
+    </header>
+
+    <!-- Main Container -->
+    <div class="container">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <h4><a href="db.html">Dashboard</a></h4>
+            <h4><a href="mt.html" class="active">Manajemen Tugas</a></h4>
+            <h4><a href="tt.html">Tambah Tugas</a></h4>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="content">
+            <div id="main">
+                <div class="header" style="margin-bottom: 3%; border-radius: 15px;">
+                    <h2 style="text-align: center;">Manajemen Tugas</h2>
+                    <button class="add" onclick="addRow()">Tambah Tugas</button>
+                </div>
+                <div class="container">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>Nama User</th>
+                                <th>Nama Tugas</th>
+                                <th>Deskripsi</th>
+                                <th>Deadline</th>
+                                <th>Status</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="taskTable">
+                            <tr>
+                                <td>Andrian</td>
+                                <td>Pemrograman Web</td>
+                                <td>Mengerjakan Modul 10</td>
+                                <td><input type='date' value='2025-03-05' disabled></td>
+                                <td>
+                                    <select disabled>
+                                        <option value="Belum Mengerjakan" selected>Belum Mengerjakan</option>
+                                        <option value="Sudah Mengerjakan">Sudah Mengerjakan</option>
+                                    </select>
+                                </td>
+                                <td class="actions">
+                                    <button class="edit" onclick="editRow(this)">✏️</button>
+                                    <button class="delete" onclick="deleteRow(this)">🗑️</button>
+                                </td>
+                            </tr>
+                            
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script>
+        function editRow(button) {
+            let row = button.parentElement.parentElement;
+            let cells = row.querySelectorAll("td");
+            for (let i = 0; i < cells.length - 1; i++) {
+                if (i === 3) {
+                    let oldValue = cells[i].querySelector('input').value;
+                    cells[i].innerHTML = `<input type='date' value='${oldValue}'>`;
+                } else if (i === 4) {
+                    let oldValue = cells[i].querySelector('select').value;
+                    cells[i].innerHTML = `
+                        <select>
+                            <option value="Belum Mengerjakan" ${oldValue === "Belum Mengerjakan" ? "selected" : ""}>Belum Mengerjakan</option>
+                            <option value="Sudah Mengerjakan" ${oldValue === "Sudah Mengerjakan" ? "selected" : ""}>Sudah Mengerjakan</option>
+                        </select>`;
+                } else {
+                    let oldValue = cells[i].innerText;
+                    cells[i].innerHTML = `<input type='text' value='${oldValue}'>`;
+                }
+            }
+            button.innerText = "✔️";
+            button.setAttribute("onclick", "saveRow(this)");
+        }
+
+        function saveRow(button) {
+            let row = button.parentElement.parentElement;
+            let inputs = row.querySelectorAll("input, select");
+            inputs.forEach((input, index) => {
+                if (index === 3) {
+                    row.cells[index].innerHTML = `<input type='date' value='${input.value}' disabled>`;
+                } else if (index === 4) {
+                    row.cells[index].innerHTML = `
+                        <select disabled>
+                            <option value="Belum Mengerjakan" ${input.value === "Belum Mengerjakan" ? "selected" : ""}>Belum Mengerjakan</option>
+                            <option value="Sudah Mengerjakan" ${input.value === "Sudah Mengerjakan" ? "selected" : ""}>Sudah Mengerjakan</option>
+                        </select>`;
+                } else {
+                    row.cells[index].innerText = input.value;
+                }
+            });
+            button.innerText = "✏️";
+            button.setAttribute("onclick", "editRow(this)");
+        }
+
+        function deleteRow(button) {
+            let row = button.parentElement.parentElement;
+            row.remove();
+        }
+
+        function addRow() {
+            let table = document.getElementById("taskTable");
+            let row = table.insertRow();
+            row.innerHTML = `
+                <td><input type='text' placeholder='Nama User'></td>
+                <td><input type='text' placeholder='Nama Tugas'></td>
+                <td><input type='text' placeholder='Deskripsi'></td>
+                <td><input type='date'></td>
+                <td>
+                    <select>
+                        <option value="Belum Mengerjakan">Belum Mengerjakan</option>
+                        <option value="Sudah Mengerjakan">Sudah Mengerjakan</option>
+                    </select>
+                </td>
+                <td class='actions'>
+                    <button class='edit' onclick='saveNewRow(this)'>✔️</button>
+                    <button class='delete' onclick='deleteRow(this)'>🗑️</button>
+                </td>`;
+        }
+    </script>
+</body>
+</html>
