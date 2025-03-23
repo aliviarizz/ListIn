@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Template</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+    <style>
+        /* Reset dan Base Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            background: #f7f7f7;
+            overflow-x: hidden;
+        }
+
+        /* Header */
+        .header {
+            background: linear-gradient(90deg, #ffffff, #f8f8f8);
+            width: 100%;
+            padding: 15px 30px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .header-left h2 {
+            color: #7E47B8;
+            font-size: 30px;
+            padding: 10px;
+            margin-left: 30px;
+        }
+        .search-bar {
+            flex: 0.7;
+            margin: 0 20px;
+            display: flex;
+            align-items: center;
+            background: white;
+            padding: 6px 12px;
+            border-radius: 20px;
+            box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        .search-bar input {
+            border: none;
+            outline: none;
+            width: 100%;
+            padding: 5px;
+        }
+        .search-bar i {
+            color: #7E47B8;
+            margin-left: 10px;
+        }
+        .header-right {
+            display: flex;
+            align-items: center;
+        }
+        .header-right i {
+            background: #7E47B8;
+            color: white;
+            padding: 10px;
+            border-radius: 50%;
+            margin-right: 10px;
+        }
+        .date-container {
+            text-align: right;
+            margin-left: 35px;
+            margin-right: 20px;
+        }
+        .date-container p {
+            margin: 0;
+            font-size: 14px;
+        }
+        .date-container span {
+            color: #7E47B8;
+            font-weight: bold;
+        }
+
+        /* Container */
+        .content {
+            display: flex;
+            flex: 1;
+        }
+
+        /* Sidebar */
+        .sidebar {
+            /* flex: 1; */
+            width: 250px;
+            background: #1a1a1a;
+            color: #fff;
+            padding: 30px 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            border-top-right-radius: 15px;
+            border-bottom-right-radius: 15px;
+            box-shadow: 2px 0 10px rgba(0, 0, 0, 0.2);
+            margin: 20px 0;
+        }
+
+        /* main */
+        .main {
+            flex: 1;
+            padding: 30px;
+            background: #fff;
+            border-radius: 15px;
+            margin: 20px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+        }
+        .sidebar img {
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+            margin-bottom: 10px;
+        }
+        .profile-link {
+            text-decoration: none;
+            color: white;
+        }
+
+        .profile-link:hover {
+            text-decoration: none;
+            color: #7E47B8;
+            transform: scale(2);
+        }
+        .sidebar p {
+            font-size: 12px;
+            opacity: 0.7;
+            margin-bottom: 20px;
+        }
+        .menu {
+            width: 100%;
+        }
+        .menu a {
+            display: flex;
+            align-items: center;
+            padding: 10px;
+            text-decoration: none;
+            color: #fff;
+            transition: 0.3s;
+            margin-top: 10px;
+            margin-bottom: 10px;
+        }
+        .menu a:hover {
+            background: white;
+            color: #7E47B8;
+            border-radius: 10px;
+        }
+        .menu a i {
+            margin-right: 20px;
+        }
+        .logout {
+            margin-top: auto;
+            color: white;
+            text-decoration: none;
+            display: block;
+            text-align: left;
+            width: 100%; 
+            padding: 10px 20px; 
+        }
+
+        .logout:hover {
+            color: #7E47B8;
+        }
+        .main {
+            flex: 1;
+            padding: 30px;
+            background: #fff;
+            border-radius: 15px;
+            margin: 20px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+        }
+
+        .table-container {
+            margin-top: 20px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 10px;
+            background: #fff;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            border: 1px solid #ddd;
+        }
+
+        th, td {
+            padding: 15px;
+            text-align: left;
+            border: 1px solid #ddd;
+        }
+
+        th {
+            background: #7E47B8;
+            color: white;
+            text-align: center;
+        }
+        td:nth-child(1), /* NO */
+        td:nth-child(4), /* Tanggal Selesai */
+        td:nth-child(5) { /* Status */
+            text-align: center;
+        }
+        td:nth-child(3) { /* Deskripsi */
+            text-align: justify;
+        }
+        .status {
+            font-weight: bold;
+            padding: 5px 10px;
+            border-radius: 5px;
+            display: inline-block;
+            text-align: center;
+        }
+
+        .completed {
+            background: #4CAF50;
+            color: white;
+        }
+
+        .not-completed {
+            background: #E74C3C;
+            color: white;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .sidebar {
+                width: 200px;
+                position: fixed;
+                height: 100%;
+                top: 0;
+                left: 0;
+                z-index: 200;
+            }
+
+            .main {
+                margin-left: 0;
+            }
+
+            .content {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="header-left">
+            <h2>List In</h2>
+        </div>
+        <div class="search-bar">
+            <input type="text" placeholder="Cari Tugasmu Di Sini...">
+            <i class="fas fa-search"></i>
+        </div>
+        <div class="header-right">
+            <i class="fas fa-bell"></i>
+            <i class="fas fa-calendar"></i>
+            <div class="date-container">
+                <p>Selasa</p>
+                <span>20/06/2023</span>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Container -->
+    <div class="content">
+        <div class="sidebar">
+            
+            <div>
+                <a href="profil.html" class="profile-link">
+                    <img class="foto" src="jeno.jpeg">
+                    <h3>amanuel</h3>
+                    <p>amanuel@gmail.com</p>
+                </a>
+            </div>
+            
+            <div class="menu">
+                <a href="#"><i class="fas fa-home"></i> Dashboard</a>
+                <a href="#"><i class="fas fa-tasks"></i> Manajemen Tugas</a>
+                <a href="#"><i class="fas fa-plus"></i> Tambah Tugas</a>
+                <a href="#"><i class="fas fa-history"></i> Daftar Riwayat</a>
+            </div>
+            <a href="#" class="logout"><i class="fas fa-sign-out-alt"></i> Keluar</a>
+        </div>
+        <div class="main">
+            <h2>Daftar Riwayat</h2>
+            <div class="table-container">
+                <table>
+                    <tr>
+                        <th>NO</th>
+                        <th>Nama Tugas</th>
+                        <th>Deskripsi</th> <!-- Tambahkan kolom Deskripsi -->
+                        <th>Tanggal Selesai</th>
+                        <th>Status</th>
+                    </tr>
+                    <tr>
+                        <td>1</td>
+                        <td>Membuat DFD Pelayanan Bank</td>
+                        <td>Membuat diagram alir sistem pelayanan di bank.</td> <!-- Tambahkan deskripsi -->
+                        <td>22/01/2025</td>
+                        <td><span class="status completed">Completed</span></td>
+                    </tr>
+                    <tr>
+                        <td>2</td>
+                        <td>Membuat Makalah Agama</td>
+                        <td>Menulis makalah tentang etika dalam kehidupan sehari-hari.</td> <!-- Tambahkan deskripsi -->
+                        <td>22/01/2025</td>
+                        <td><span class="status not-completed">Not Complete</span></td>
+                    </tr>
+                </table>
+               
+            </div>
+        </div>
+    </div>
+</body>
+</html>
