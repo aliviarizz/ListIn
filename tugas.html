@@ -390,6 +390,34 @@
             let row = button.parentElement.parentElement;
             row.remove();
         }
-    </script>
+    # Step 1: Fetch the latest changes from the remote repository
+    git fetch origin
+    
+    # Step 2: Merge the changes into your local branch
+    git pull origin main
+    
+    # Step 3: Resolve any merge conflicts if they arise
+    # Open the conflicting files, resolve conflicts, and stage the resolved files
+    git add <file_with_conflicts>
+    
+    # Step 4: Commit the merge if necessary
+    git commit -m "Resolve merge conflicts"
+    
+    # Step 5: Push your changes to the remote repository
+    git push origin main    # Step 1: Fetch the latest changes from the remote repository
+    git fetch origin
+    
+    # Step 2: Merge the changes into your local branch
+    git pull origin main
+    
+    # Step 3: Resolve any merge conflicts if they arise
+    # Open the conflicting files, resolve conflicts, and stage the resolved files
+    git add <file_with_conflicts>
+    
+    # Step 4: Commit the merge if necessary
+    git commit -m "Resolve merge conflicts"
+    
+    # Step 5: Push your changes to the remote repository
+    git push origin main    </script>
 </body>
 </html>
