@@ -309,7 +309,7 @@
                         <tr>
                             <td>Pemrograman Web</td>
                             <td>Mengerjakan Modul 10</td>
-                            <td><input type='date' value='2025-12-05' disabled></td>
+                            <td><input type='date' value='2025-05-20' disabled></td>
                             <td>
                                 <select disabled>
                                     <option value="Belum Mengerjakan" selected>Belum Mengerjakan</option>
@@ -323,8 +323,8 @@
                         </tr>
                         <tr>
                             <td>Pemrograman Web</td>
-                            <td>Mengerjakan Modul 10</td>
-                            <td><input type='date' value='2025-12-05' disabled></td>
+                            <td>Mengerjakan Tugas Figma</td>
+                            <td><input type='date' value='2025-04-28' disabled></td>
                             <td>
                                 <select disabled>
                                     <option value="Belum Mengerjakan" selected>Belum Mengerjakan</option>
@@ -390,6 +390,75 @@
             let row = button.parentElement.parentElement;
             row.remove();
         }
+
+        function checkDeadlines() {
+            const tasks = document.querySelectorAll("#taskTable tr");
+            const now = new Date();
+            let notifications = [];
+
+            tasks.forEach(task => {
+                const deadlineCell = task.querySelector("input[type='date']");
+                const taskName = task.cells[0].innerText;
+                const deadline = new Date(deadlineCell.value);
+
+                const timeDiff = deadline - now;
+                const oneDay = 24 * 60 * 60 * 1000;
+                const tenHours = 10 * 60 * 60 * 1000;
+
+                const daysLeft = Math.ceil(timeDiff / oneDay);
+
+                if (daysLeft > 0) {
+                    notifications.push(`"${taskName}" akan berakhir dalam ${daysLeft} hari.`);
+                } else if (timeDiff <= 0 && now.toDateString() === deadline.toDateString()) {
+                    notifications.push(`"${taskName}" berakhir hari ini.`);
+                } else if (timeDiff < 0) {
+                    notifications.push(`"${taskName}" sudah lewat deadline.`);
+                }
+                
+            });
+
+            if (notifications.length > 0) {
+                alert(notifications.join("\n"));
+            } else {
+                alert("No upcoming deadlines.");
+            }
+        }
+
+        function checkDeadlinesOnLoad() {
+            const tasks = document.querySelectorAll("#taskTable tr");
+            const now = new Date();
+            let notifications = [];
+
+            tasks.forEach(task => {
+                const deadlineCell = task.querySelector("input[type='date']");
+                const taskName = task.cells[0].innerText;
+                const deadline = new Date(deadlineCell.value);
+
+                const timeDiff = deadline - now;
+                const oneDay = 24 * 60 * 60 * 1000;
+                const tenHours = 10 * 60 * 60 * 1000;
+
+                const daysLeft = Math.ceil(timeDiff / oneDay);
+
+                if (daysLeft > 0) {
+                    notifications.push(`"${taskName}" akan berakhir dalam ${daysLeft} hari.`);
+                } else if (timeDiff <= 0 && now.toDateString() === deadline.toDateString()) {
+                    notifications.push(`"${taskName}" berakhir hari ini.`);
+                } else if (timeDiff < 0) {
+                    notifications.push(`"${taskName}" sudah lewat deadline.`);
+                }
+            });
+
+            if (notifications.length > 0) {
+                alert(notifications.join("\n"));
+            }
+        }
+
+        document.addEventListener("DOMContentLoaded", () => {
+            checkDeadlinesOnLoad(); // Trigger notification on page load
+            const bellIcon = document.querySelector(".fas.fa-bell");
+            bellIcon.addEventListener("click", checkDeadlines);
+        });
     </script>
 </body>
 </html>
