@@ -7,6 +7,7 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css" rel="stylesheet">
     <style>
         /* Reset dan Base Styles */
         * {
@@ -96,10 +97,8 @@
             transition: all 0.3s ease;
         }
 
-
         /* Sidebar */
         .sidebar {
-            /* flex: 1; */
             width: 250px;
             background: #1a1a1a;
             color: #fff;
@@ -122,19 +121,6 @@
             margin: 20px;
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
         }
-
-        /* .sidebar {
-            width: 250px;
-            height: 89vh;
-            background: #000;
-            color: #fff;
-            padding: 20px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            border-top-right-radius: 10px;
-            border-bottom-right-radius: 10px;
-        } */
 
         .sidebar img {
             width: 70px;
@@ -354,6 +340,89 @@
                 flex-direction: column;
             }
         }
+
+        /* Tambahan untuk pop-up notifikasi */
+        #notification-popup {
+            position: absolute;
+            top: 70px;
+            right: 20px;
+            background: #fff;
+            border: 1px solid #ddd;
+            border-radius: 12px;
+            padding: 20px 25px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+            z-index: 999;
+            width: 350px; /* Diperlebar untuk tampilan lebih rapi */
+            opacity: 0;
+            transform: translateY(-10px);
+            transition: opacity 0.3s ease, transform 0.3s ease;
+        }
+
+        #notification-popup.show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        #notification-popup h4 {
+            margin-top: 0;
+            font-size: 16px;
+            border-bottom: 1px solid #eee;
+            padding-bottom: 8px;
+            margin-bottom: 12px;
+        }
+
+        #notification-list li {
+            padding: 10px 0;
+            border-bottom: 1px solid #f0f0f0;
+            font-size: 14px;
+            line-height: 1.5;
+        }
+
+        #notification-list li:last-child {
+            border-bottom: none;
+        }
+
+        .fa-bell {
+            cursor: pointer;
+            position: relative;
+        }
+
+        /* Titik merah notifikasi */
+        .fa-bell::after {
+            content: "";
+            position: absolute;
+            top: 6px;
+            right: 6px;
+            width: 10px;
+            height: 10px;
+            background-color: red;
+            border-radius: 50%;
+            display: none;
+        }
+        .fa-bell.has-notif::after {
+            display: block;
+        }
+
+        /* Styling untuk kalender pop-up */
+        #calendar-popup {
+            position: absolute;
+            top: 70px;
+            right: 60px;
+            background: #fff;
+            border: 1px solid #ccc;
+            border-radius: 10px;
+            padding: 15px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+            z-index: 999;
+        }
+
+        #calendar-container {
+            width: 100%;
+        }
+
+        .flatpickr-calendar {
+            font-family: 'Poppins', sans-serif;
+        }
     </style>
 </head>
 <body>
@@ -380,15 +449,15 @@
     <div class="content">
         <div class="sidebar hidden" id="sidebar">
             <img class="foto" src="https://via.placeholder.com/80" alt="Profile Photo">
-            <h3><a href="profil.html" class="profile-link">Amanuel</a></h3>
+            <h3><a href="halaman-profil.html" class="profile-link">Amanuel</a></h3>
             <p>amanuel@gmail.com</p>
             <div class="menu">
-                <a href="#"><i class="fas fa-home"></i> Dashboard</a>
-                <a href="#"><i class="fas fa-tasks"></i> Manajemen Tugas</a>
-                <a href="#"><i class="fas fa-plus"></i> Tambah Tugas</a>
-                <a href="#"><i class="fas fa-history"></i> Daftar Riwayat</a>
+                <a href="halaman-dashboard.html"><i class="fas fa-home"></i> Dashboard</a>
+                <a href="tugas.html"><i class="fas fa-tasks"></i> Manajemen Tugas</a>
+                <a href="tambah.html"><i class="fas fa-plus"></i> Tambah Tugas</a>
+                <a href="halaman-riwayat.html"><i class="fas fa-history"></i> Daftar Riwayat</a>
             </div>
-            <a href="#" class="logout"><i class="fas fa-sign-out-alt"></i> Keluar</a>
+            <a href="halaman-daftar-masuk.html" class="logout"><i class="fas fa-sign-out-alt"></i> Keluar</a>
         </div>
         <div class="main">
             <div class="todo">
@@ -419,6 +488,16 @@
         </div>
     </div>
 
+    <div id="notification-popup" style="display:none; position:absolute; top:70px; right:20px; background:#fff; border:1px solid #ccc; border-radius:10px; padding:15px; box-shadow:0 2px 8px rgba(0,0,0,0.2); z-index:999;">
+        <h4>Tugas yang Mendekati Deadline:</h4>
+        <ul id="notification-list" style="list-style:none; padding:0;"></ul>
+    </div>
+
+    <div id="calendar-popup" style="display:none;">
+        <div id="calendar-container"></div>
+    </div>    
+
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
     <script>
         // Data task awal (simulasi database)
         let tasks = [
@@ -428,6 +507,17 @@
             { id: 4, title: "Walk the dog", description: "Take the dog to the park and bring treats as well", priority: "Low", status: "Completed", date: "20/06/2023" },
             { id: 5, title: "Conduct meeting", description: "Meet with the client and finalize requirements", priority: "High", status: "Completed", date: "20/06/2023" }
         ];
+
+        // Inisialisasi flatpickr untuk kalender inline
+        const calendarContainer = document.getElementById('calendar-container');
+        flatpickr(calendarContainer, {
+            inline: true,
+            dateFormat: "d/m/Y",
+            onChange: function(selectedDates, dateStr) {
+                console.log("Tanggal dipilih: " + dateStr);
+                // Anda bisa menambahkan logika untuk menangani pemilihan tanggal di sini
+            }
+        });
 
         // Fungsi untuk merender task
         function renderTasks() {
@@ -527,6 +617,93 @@
 
         // Render task saat halaman dimuat
         renderTasks();
+
+        // Tampilkan alert hanya saat pertama kali buka dashboard
+        if (!localStorage.getItem("dashboardVisited")) {
+            alert("Selamat datang di Dashboard! Cek tugas-tugasmu hari ini.");
+            localStorage.setItem("dashboardVisited", "true");
+        }
+
+        // Fungsi mengecek tugas 1 hari sebelum deadline
+        function checkTasksNearDeadline() {
+            const today = new Date();
+            const tasksNearDeadline = tasks.filter(task => {
+                const [day, month, year] = task.date.split("/").map(Number);
+                const taskDate = new Date(year, month - 1, day);
+                const diffTime = taskDate.getTime() - today.getTime();
+                const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+                return diffDays === 1;
+            });
+
+            return tasksNearDeadline;
+        }
+
+        // Buat ikon lonceng bisa diklik dan tampilkan pop-up
+        const bellIcon = document.querySelector(".fa-bell");
+        const popup = document.getElementById("notification-popup");
+        const notificationList = document.getElementById("notification-list");
+
+        const nearDeadlineTasks = checkTasksNearDeadline();
+        let hasNotification = nearDeadlineTasks.length > 0;
+
+        if (hasNotification) {
+            bellIcon.classList.add("has-notif"); // Tambahkan titik merah lewat CSS
+        }
+
+        bellIcon.addEventListener("click", () => {
+            popup.classList.toggle("show"); // Toggle visibilitas pop-up via CSS
+
+            if (popup.classList.contains("show")) {
+                notificationList.innerHTML = "";
+                nearDeadlineTasks.forEach(task => {
+                    const li = document.createElement("li");
+                    li.textContent = `${task.title} - Deadline: ${task.date}`;
+                    notificationList.appendChild(li);
+                });
+
+                if (hasNotification) {
+                    bellIcon.classList.remove("has-notif");
+                    hasNotification = false;
+                }
+            }
+        });
+
+        document.querySelector('.fa-bell').addEventListener('click', function () {
+            const popup = document.getElementById('notification-popup');
+            popup.style.display = popup.style.display === 'none' ? 'block' : 'none';
+            this.classList.remove('has-notif'); // Hilangkan titik merah setelah diklik
+        });
+
+        // Tampilkan kalender saat ikon kalender diklik
+        document.querySelector('.fa-calendar').addEventListener('click', function (e) {
+            e.preventDefault();
+            const calendarPopup = document.getElementById('calendar-popup');
+            calendarPopup.style.display = calendarPopup.style.display === 'none' ? 'block' : 'none';
+        });
+
+        // Sembunyikan kalender jika klik di luar
+        document.addEventListener('click', function (e) {
+            const calendarIcon = document.querySelector('.fa-calendar');
+            const calendarPopup = document.getElementById('calendar-popup');
+            if (!calendarPopup.contains(e.target) && !calendarIcon.contains(e.target)) {
+                calendarPopup.style.display = 'none';
+            }
+        });
+
+        // Fungsi untuk menampilkan hari dan tanggal sekarang
+        function updateDateDisplay() {
+            const dateContainer = document.querySelector('.date-container');
+            const now = new Date();
+
+            const days = ['Minggu', 'Senin', 'Selasa', 'Rabu', 'Kamis', 'Jumat', 'Sabtu'];
+            const dayName = days[now.getDay()];
+            const formattedDate = now.toLocaleDateString('id-ID'); // Format: dd/mm/yyyy
+
+            dateContainer.innerHTML = `<p>${dayName}</p><span>${formattedDate}</span>`;
+        }
+
+        // Panggil saat halaman dimuat
+        updateDateDisplay();
     </script>
 </body>
 </html>
