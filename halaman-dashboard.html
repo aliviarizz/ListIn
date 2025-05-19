@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dasbor - List In</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <header class="header">
+        <div class="header-left">
+            <!-- Gambar Profil Pengguna di KIRI Logo -->
+            <img src="images/placeholder-profile.png" alt="Foto Profil" class="header-profile-pic" id="headerProfilePic">
+            <h2>List In</h2>
+        </div>
+        <div class="search-bar">
+            <input type="text" id="searchInputGlobal" placeholder="Cari Tugas...">
+            <i class="fas fa-search"></i>
+        </div>
+        <div class="header-right">
+            <i class="fas fa-bell" id="bellIcon" title="Notifikasi"></i>
+            <i class="fas fa-calendar-alt" id="calendarIcon" title="Kalender"></i>
+            <div class="date-container">
+                <!-- Akan diisi oleh JS -->
+            </div>
+        </div>
+    </header>
+
+    <div class="content">
+        <aside class="sidebar" id="sidebar">
+            <nav class="menu">
+                <a href="halaman-dashboard.html" class="active"><i class="fas fa-home"></i> Dasbor</a>
+                <a href="halaman-manajemen-tugas.html"><i class="fas fa-tasks"></i> Kelola Tugas</a>
+                <a href="halaman-tambah-tugas.html"><i class="fas fa-plus-circle"></i> Tambah Tugas</a>
+                <a href="halaman-riwayat.html"><i class="fas fa-history"></i> Riwayat</a>
+            </nav>
+            <a href="#" class="logout" id="logoutButton"><i class="fas fa-sign-out-alt"></i> Keluar</a>
+        </aside>
+        <main class="main main-dashboard">
+             <h2 class="page-title">Dasbor Saya</h2>
+
+            <section class="widget todo">
+                <h3>Tugas Aktif (<span id="todo-count">0</span>)</h3>
+                <div id="todo-list">
+                    <!-- Tugas .task-item-card dirender di sini -->
+                </div>
+            </section>
+            <section class="widget status">
+                <h3>Status Tugas</h3>
+                <div class="progress-container">
+                    <div class="progress">
+                        <div class="progress-circle" id="completed-progress" data-progress="0"></div>
+                        <p>Selesai</p>
+                    </div>
+                    <div class="progress">
+                        <div class="progress-circle in-progress" id="in-progress-progress" data-progress="0"></div>
+                        <p>Dikerjakan</p>
+                    </div>
+                    <div class="progress">
+                        <div class="progress-circle not-started" id="not-started-progress" data-progress="0"></div>
+                        <p>Belum Mulai</p>
+                    </div>
+                </div>
+            </section>
+            <section class="widget completed">
+                <h3>Tugas Selesai (<span id="completed-count">0</span>)</h3>
+                <div id="completed-list">
+                    <!-- Tugas .task-item-card dirender di sini -->
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <div id="notification-popup">
+        <h4>Notifikasi Tugas</h4>
+        <ul id="notification-list"></ul>
+    </div>
+    <div id="calendar-popup">
+        <div id="calendar-container-popup"></div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+    <script src="https://npmcdn.com/flatpickr/dist/l10n/id.js"></script>
+    <script src="js/auth.js"></script>
+    <script src="js/script.js"></script>
+</body>
+</html>
