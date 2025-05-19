@@ -1,392 +1,67 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>List In - Riwayat Tugas</title>
-  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet" />
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet" />
-  <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-      font-family: 'Poppins', sans-serif;
-    }
-
-    body {
-      display: flex;
-      flex-direction: column;
-      min-height: 100vh;
-      background: #f7f7f7;
-    }
-
-    .header {
-      background: linear-gradient(90deg, #ffffff, #f8f8f8);
-      padding: 15px 30px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-      position: sticky;
-      top: 0;
-      z-index: 100;
-    }
-
-    .header-left h2 {
-      color: #7E47B8;
-      font-size: 30px;
-    }
-
-    .search-bar {
-      flex: 0.7;
-      display: flex;
-      align-items: center;
-      background: white;
-      padding: 6px 12px;
-      border-radius: 20px;
-      box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
-    }
-
-    .search-bar input {
-      border: none;
-      outline: none;
-      width: 100%;
-      padding: 5px;
-    }
-
-    .search-bar i {
-      color: #7E47B8;
-      margin-left: 10px;
-    }
-
-    .header-right {
-      display: flex;
-      align-items: center;
-    }
-
-    .header-right i {
-      background: #7E47B8;
-      color: white;
-      padding: 10px;
-      border-radius: 50%;
-      margin-right: 10px;
-    }
-
-    .date-container {
-      text-align: right;
-    }
-
-    .date-container p {
-      margin: 0;
-      font-size: 14px;
-    }
-
-    .date-container span {
-      color: #7E47B8;
-      font-weight: bold;
-    }
-
-    .content {
-      display: flex;
-      flex: 1;
-    }
-
-    .sidebar {
-      width: 250px;
-      background: #1a1a1a;
-      color: #fff;
-      padding: 30px 20px;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-    }
-
-    .sidebar img {
-      width: 70px;
-      height: 70px;
-      border-radius: 50%;
-      margin-bottom: 10px;
-    }
-
-    .sidebar p {
-      font-size: 12px;
-      opacity: 0.7;
-      margin-bottom: 20px;
-    }
-
-    .menu {
-      width: 100%;
-    }
-
-    .menu a {
-      display: flex;
-      align-items: center;
-      padding: 10px;
-      text-decoration: none;
-      color: #fff;
-      transition: 0.3s;
-      margin: 10px 0;
-    }
-
-    .menu a:hover {
-      background: white;
-      color: #7E47B8;
-      border-radius: 10px;
-    }
-
-    .menu a i {
-      margin-right: 20px;
-    }
-
-    .logout {
-      margin-top: auto;
-      color: white;
-      text-decoration: none;
-      padding: 10px;
-      display: block;
-      width: 100%;
-      text-align: left;
-    }
-
-    .logout:hover {
-      color: #7E47B8;
-    }
-
-    .main {
-      flex: 1;
-      padding: 30px;
-    }
-
-    .main h2 {
-      color: #7E47B8;
-      margin-bottom: 20px;
-    }
-
-    .filter-container {
-      margin-bottom: 30px;
-      position: relative;
-      display: inline-block;
-    }
-
-    .filter-toggle {
-      background-color: #7E47B8;
-      color: white;
-      padding: 10px 18px;
-      border: none;
-      border-radius: 10px;
-      cursor: pointer;
-      font-weight: 600;
-      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15);
-    }
-
-    .filter-menu {
-      display: none;
-      position: absolute;
-      top: 50px;
-      left: 0;
-      background-color: #ffffff;
-      padding: 20px;
-      border-radius: 15px;
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
-      z-index: 999;
-      width: 300px;
-    }
-
-    .filter-row {
-      margin-bottom: 15px;
-      display: flex;
-      flex-direction: column;
-    }
-
-    .filter-row label {
-      font-size: 14px;
-      margin-bottom: 5px;
-      color: #474988;
-      font-weight: 500;
-    }
-
-    .filter-row input,
-    .filter-row select {
-      padding: 8px;
-      border-radius: 8px;
-      border: 1px solid #ccc;
-      font-size: 14px;
-      outline: none;
-    }
-
-    .filter-apply {
-      background-color: #B647B8;
-      color: white;
-      padding: 8px 14px;
-      border: none;
-      border-radius: 8px;
-      cursor: pointer;
-      width: 100%;
-      font-weight: bold;
-      transition: 0.3s ease;
-    }
-
-    .filter-apply:hover {
-      background-color: #9742a3;
-    }
-
-    table {
-      width: 100%;
-      border-collapse: collapse;
-      background: #fff;
-      border-radius: 10px;
-      overflow: hidden;
-      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-      border: 1px solid #ddd;
-    }
-
-    th, td {
-      padding: 15px;
-      text-align: left;
-      border: 1px solid #ddd;
-    }
-
-    th {
-      background: #7E47B8;
-      color: white;
-    }
-
-    td:nth-child(1),
-    td:nth-child(4),
-    td:nth-child(5) {
-      text-align: center;
-    }
-
-    .status.completed {
-      background: #4CAF50;
-      color: white;
-      padding: 5px 10px;
-      border-radius: 5px;
-    }
-
-    .status.not-completed {
-      background: #E74C3C;
-      color: white;
-      padding: 5px 10px;
-      border-radius: 5px;
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Riwayat Tugas Selesai - List In</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-
-  <header class="header">
-    <div class="header-left">
-      <h2>List In</h2>
-    </div>
-    <div class="search-bar">
-      <input type="text" placeholder="Cari Tugasmu Di Sini..." />
-      <i class="fas fa-search"></i>
-    </div>
-    <div class="header-right">
-      <i class="fas fa-bell"></i>
-      <i class="fas fa-calendar"></i>
-      <div class="date-container">
-        <p>Selasa</p>
-        <span>23/04/2025</span>
-      </div>
-    </div>
-  </header>
-
-  <div class="content">
-    <div class="sidebar">
-      <img src="jeno.jpeg" alt="foto" />
-      <h3>amanuel</h3>
-      <p>amanuel@gmail.com</p>
-      <div class="menu">
-        <a href="#"><i class="fas fa-home"></i> Dashboard</a>
-        <a href="#"><i class="fas fa-tasks"></i> Manajemen Tugas</a>
-        <a href="#"><i class="fas fa-plus"></i> Tambah Tugas</a>
-        <a href="#"><i class="fas fa-history"></i> Daftar Riwayat</a>
-      </div>
-      <a href="#" class="logout"><i class="fas fa-sign-out-alt"></i> Keluar</a>
-    </div>
-
-    <div class="main">
-      <h2>Daftar Riwayat</h2>
-
-      <div class="filter-container">
-        <button class="filter-toggle" onclick="toggleFilterMenu()">Filter <i class="fas fa-chevron-down"></i></button>
-        <div class="filter-menu" id="filterMenu">
-          <div class="filter-row">
-            <label for="filterStatus">Status</label>
-            <select id="filterStatus">
-              <option value="all">Semua Status</option>
-              <option value="Completed">Completed</option>
-              <option value="Not Complete">Not Complete</option>
-            </select>
-          </div>
-          <div class="filter-row">
-            <label for="filterTitle">Judul</label>
-            <input type="text" id="filterTitle" placeholder="Masukkan judul tugas..." />
-          </div>
-          <div class="filter-row">
-            <label for="filterDate">Tanggal</label>
-            <input type="date" id="filterDate" />
-          </div>
-          <button class="filter-apply" onclick="applyFilters()">Terapkan</button>
+    <header class="header">
+        <div class="header-left">
+            
+            <img src="images/placeholder-profile.png" alt="Foto Profil" class="header-profile-pic" id="headerProfilePic">
+            <h2>List In</h2>
         </div>
-      </div>
+         <div class="search-bar">
+             <input type="text" id="searchInputGlobal" placeholder="Cari di Riwayat...">
+             <i class="fas fa-search"></i>
+        </div>
+        <div class="header-right">
+            <i class="fas fa-bell" id="bellIcon"></i>
+            <i class="fas fa-calendar-alt" id="calendarIcon"></i>
+            <div class="date-container"></div>
+        </div>
+    </header>
+    <div class="content">
+        <aside class="sidebar" id="sidebar">
+            <nav class="menu">
+                <a href="halaman-dashboard.html"><i class="fas fa-home"></i> Dasbor</a>
+                <a href="halaman-manajemen-tugas.html"><i class="fas fa-tasks"></i> Kelola Tugas</a>
+                <a href="halaman-tambah-tugas.html"><i class="fas fa-plus-circle"></i> Tambah Tugas</a>
+                <a href="halaman-riwayat.html" class="active"><i class="fas fa-history"></i> Riwayat</a>
+            </nav>
+            <a href="#" class="logout" id="logoutButton"><i class="fas fa-sign-out-alt"></i> Keluar</a>
+        </aside>
+        <main class="main">
+            <h2 class="page-title">Riwayat Tugas Selesai</h2>
+            
+            <!-- Filter Section for Riwayat -->
+            <div class="filters-container">
+                <div class="form-group">
+                    <label for="filterHistoryDateRange">Filter Rentang Tanggal Selesai</label>
+                    <input type="text" id="filterHistoryDateRange" placeholder="Pilih Rentang Tanggal">
+                </div>
+                <button id="applyHistoryFilterBtn" class="btn btn-primary btn-filter">Terapkan</button>
+                <button id="resetHistoryFilterBtn" class="btn btn-secondary btn-filter">Reset</button>
+            </div>
 
-      <table id="taskTable">
-        <thead>
-          <tr>
-            <th>No</th>
-            <th>Judul</th>
-            <th>Deskripsi</th>
-            <th>Tanggal</th>
-            <th>Status</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>1</td>
-            <td>Belajar JavaScript</td>
-            <td>Mengerjakan modul JS dasar</td>
-            <td>2025-04-23</td>
-            <td class="status completed">Completed</td>
-          </tr>
-          <tr>
-            <td>2</td>
-            <td>Revisi UI</td>
-            <td>Perbaikan desain halaman</td>
-            <td>2025-04-20</td>
-            <td class="status not-completed">Not Complete</td>
-          </tr>
-        </tbody>
-      </table>
+            <div class="table-container"> <!-- Kontainer untuk daftar riwayat -->
+                 <div id="historyTaskList">
+                    <!-- Daftar riwayat akan dirender di sini sebagai .task-item-card oleh JS -->
+                    <p class="no-tasks-message" style="text-align:center; padding: 20px; color: #777;">Memuat riwayat...</p>
+                </div>
+            </div>
+        </main>
     </div>
-  </div>
-
-  <script>
-    function toggleFilterMenu() {
-      const menu = document.getElementById("filterMenu");
-      menu.style.display = menu.style.display === "block" ? "none" : "block";
-    }
-
-    function applyFilters() {
-      const status = document.getElementById("filterStatus").value.toLowerCase();
-      const title = document.getElementById("filterTitle").value.toLowerCase();
-      const date = document.getElementById("filterDate").value;
-      const rows = document.querySelectorAll("#taskTable tbody tr");
-
-      rows.forEach(row => {
-        const taskStatus = row.cells[4].textContent.trim().toLowerCase();
-        const taskTitle = row.cells[1].textContent.trim().toLowerCase();
-        const taskDate = row.cells[3].textContent.trim();
-
-        const matchStatus = (status === "all" || taskStatus.includes(status));
-        const matchTitle = taskTitle.includes(title);
-        const matchDate = (!date || taskDate === date);
-
-        row.style.display = (matchStatus && matchTitle && matchDate) ? "" : "none";
-      });
-    }
-  </script>
+    <div id="notification-popup"><h4>Notifikasi Tugas</h4><ul id="notification-list"></ul></div>
+    <div id="calendar-popup"><div id="calendar-container-popup"></div></div>
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+    <script src="https://npmcdn.com/flatpickr/dist/l10n/id.js"></script>
+    <script src="js/auth.js"></script>
+    <script src="js/script.js"></script>
 </body>
 </html>
