@@ -1,0 +1,1267 @@
+/* css/style.css */
+
+/* ==========================================================================
+   Reset dan Base Styles
+   ========================================================================== */
+/* Menerapkan reset dasar untuk menghapus margin dan padding default browser,
+   serta mengatur box-sizing ke border-box untuk kalkulasi ukuran elemen yang lebih intuitif. */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Pengaturan dasar untuk elemen body */
+body {
+    display: flex; /* Menggunakan flexbox untuk layout utama */
+    flex-direction: column; /* Mengatur item anak (header, content, footer) secara vertikal */
+    min-height: 100vh; /* Memastikan body mengisi setidaknya seluruh tinggi viewport */
+    background: #eef1f5; /* Warna latar belakang body */
+    font-family: 'Poppins', sans-serif; /* Font utama untuk aplikasi */
+    color: #3c4250; /* Warna teks default */
+    overflow-x: hidden; /* Mencegah scroll horizontal pada body */
+    line-height: 1.55; /* Jarak antar baris teks */
+}
+
+/* ==========================================================================
+   Header
+   ========================================================================== */
+/* Styling untuk kontainer header utama */
+.header {
+    background: #ffffff; /* Warna latar belakang header */
+    width: 100%; /* Lebar header mengisi penuh */
+    padding: 10px 25px; /* Padding internal header */
+    display: flex; /* Menggunakan flexbox untuk alignment item di header */
+    align-items: center; /* Menyelaraskan item secara vertikal di tengah */
+    justify-content: space-between; /* Memberi jarak antar grup item (kiri, tengah, kanan) */
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06); /* Bayangan halus di bawah header */
+    position: sticky; /* Membuat header tetap di atas saat scroll */
+    top: 0; /* Posisi header di paling atas */
+    z-index: 1000; /* Memastikan header di atas elemen lain */
+    height: 55px; /* Tinggi tetap untuk header */
+}
+
+/* Styling untuk bagian kiri header (logo/nama aplikasi dan foto profil) */
+.header-left {
+    display: flex;
+    align-items: center;
+}
+
+/* Styling untuk gambar profil di header */
+.header-profile-pic {
+    width: 30px; /* Lebar gambar profil */
+    height: 30px; /* Tinggi gambar profil */
+    border-radius: 50%; /* Membuat gambar profil menjadi lingkaran */
+    margin-right: 12px; /* Jarak kanan dari gambar profil ke elemen berikutnya */
+    cursor: pointer; /* Mengubah kursor menjadi pointer saat hover */
+    border: 1.5px solid #7e47b8; /* Border dengan warna primer */
+    object-fit: cover; /* Memastikan gambar mengisi area tanpa distorsi */
+}
+.header-profile-pic:hover {
+    opacity: 0.85; /* Mengurangi opasitas saat hover */
+}
+
+/* Styling untuk judul atau nama aplikasi di header kiri */
+.header-left h2 {
+    color: #7e47b8; /* Warna teks judul (warna primer) */
+    font-size: 1.7rem; /* Ukuran font judul */
+    margin: 0; /* Menghapus margin default */
+}
+
+/* Styling untuk search bar di tengah header */
+.search-bar {
+    flex-grow: 1; /* Memungkinkan search bar mengisi ruang yang tersedia */
+    max-width: 450px; /* Lebar maksimal search bar */
+    margin: 0 25px; /* Margin horizontal untuk search bar */
+    display: flex;
+    align-items: center;
+    background: #f0f3f7; /* Warna latar belakang search bar */
+    padding: 7px 15px; /* Padding internal search bar */
+    border-radius: 25px; /* Membuat sudut search bar melengkung */
+    border: 1px solid #dfe3e8; /* Border halus untuk search bar */
+}
+/* Styling untuk input field di dalam search bar */
+.search-bar input {
+    border: none; /* Menghapus border default */
+    outline: none; /* Menghapus outline default saat fokus */
+    width: 100%; /* Input mengisi lebar search bar */
+    background: transparent; /* Latar belakang transparan */
+    font-size: 0.9rem; /* Ukuran font input */
+    color: #555; /* Warna teks input */
+}
+/* Styling untuk placeholder input */
+.search-bar input::placeholder {
+    color: #888; /* Warna teks placeholder */
+}
+/* Styling untuk ikon search di dalam search bar */
+.search-bar i {
+    color: #7e47b8; /* Warna ikon search (warna primer) */
+    margin-left: 8px; /* Jarak kiri ikon dari input */
+    font-size: 1rem; /* Ukuran ikon search */
+}
+/* Styling untuk tombol (jika ada) di dalam search bar, spesifik untuk ikon search */
+.search-bar button i.fa-search {
+    color: #7e47b8; /* Warna ikon search */
+    font-size: 1rem; /* Ukuran ikon search */
+}
+
+
+/* Styling untuk bagian kanan header (ikon notifikasi, kalender, tanggal) */
+.header-right {
+    display: flex;
+    align-items: center;
+}
+/* Styling umum untuk ikon Font Awesome di header kanan */
+.header-right i.fas {
+    color: #5f6368; /* Warna default ikon */
+    padding: 8px; /* Padding di sekitar ikon */
+    font-size: 1.2rem; /* Ukuran ikon */
+    cursor: pointer; /* Kursor pointer saat hover */
+    transition: color 0.2s, background-color 0.2s; /* Transisi halus untuk hover effect */
+    margin-left: 10px; /* Jarak kiri antar ikon */
+    border-radius: 50%; /* Membuat latar belakang ikon menjadi lingkaran saat hover */
+}
+/* Efek hover untuk ikon di header kanan */
+.header-right i.fas:hover {
+    color: #7e47b8; /* Warna ikon menjadi primer saat hover */
+    background-color: #f0e9f7; /* Warna latar belakang lembut saat hover */
+}
+/* Styling untuk ikon notifikasi yang memiliki notifikasi baru (dot merah) */
+.header-right i.fas.fa-bell.has-notif {
+    position: relative; /* Diperlukan untuk positioning pseudo-element ::after */
+}
+.header-right i.fas.fa-bell.has-notif::after {
+    content: ''; /* Konten kosong untuk dot */
+    position: absolute; /* Posisi absolut relatif terhadap ikon bell */
+    top: 6px; /* Posisi dot dari atas */
+    right: 6px; /* Posisi dot dari kanan */
+    width: 8px; /* Lebar dot */
+    height: 8px; /* Tinggi dot */
+    background-color: #ef4444; /* Warna merah untuk notifikasi */
+    border-radius: 50%; /* Membuat dot menjadi lingkaran */
+    border: 1px solid white; /* Border putih tipis di sekitar dot (opsional) */
+}
+
+
+/* Styling untuk kontainer tanggal di header kanan */
+.date-container {
+    text-align: right; /* Teks rata kanan */
+    margin-left: 15px; /* Jarak kiri dari elemen sebelumnya */
+}
+/* Styling untuk paragraf di dalam date-container */
+.date-container p {
+    margin: 0; /* Menghapus margin default */
+    font-size: 0.8rem; /* Ukuran font teks tanggal */
+    color: #555; /* Warna teks tanggal */
+}
+/* Styling untuk span (biasanya untuk hari atau bagian yang ditekankan) di date-container */
+.date-container span {
+    color: #7e47b8; /* Warna teks span (warna primer) */
+    font-weight: 500; /* Ketebalan font */
+    font-size: 0.8rem; /* Ukuran font span */
+}
+
+/* ==========================================================================
+   Content Area (Sidebar + Main Content)
+   ========================================================================== */
+/* Styling untuk kontainer utama yang membungkus sidebar dan main content */
+.content {
+    display: flex; /* Menggunakan flexbox untuk layout sidebar dan main content berdampingan */
+    flex: 1; /* Memastikan .content mengisi sisa tinggi setelah header */
+    padding: 15px; /* Padding di sekitar .content */
+    gap: 15px; /* Jarak antara sidebar dan main content */
+    max-height: calc(100vh - 55px); /* Tinggi maksimal .content (tinggi viewport - tinggi header) */
+    overflow: hidden; /* Mencegah .content itu sendiri untuk scroll, .main yang akan scroll jika perlu */
+}
+
+/* ==========================================================================
+   Sidebar
+   ========================================================================== */
+/* Styling untuk sidebar navigasi */
+.sidebar {
+    width: 200px; /* Lebar sidebar */
+    background: #2c3e50; /* Warna latar belakang sidebar */
+    color: #ecf0f1; /* Warna teks default di sidebar */
+    padding: 15px; /* Padding internal sidebar */
+    display: flex;
+    flex-direction: column; /* Item menu ditumpuk vertikal */
+    border-radius: 8px; /* Sudut melengkung untuk sidebar */
+    height: calc(100vh - 55px - 30px); /* Tinggi sidebar (tinggi viewport - tinggi header - (padding atas+bawah .content)) */
+    position: sticky; /* Membuat sidebar tetap saat konten utama di-scroll */
+    top: calc(55px + 15px); /* Posisi sticky (tinggi header + padding atas .content) */
+    flex-shrink: 0; /* Mencegah sidebar menyusut jika konten utama terlalu lebar */
+    overflow-y: auto; /* Memungkinkan scroll vertikal di sidebar jika item menu banyak */
+}
+
+/* Styling untuk grup menu di sidebar */
+.menu {
+    width: 100%; /* Menu mengisi lebar sidebar */
+}
+/* Styling untuk setiap item link menu */
+.menu a {
+    display: flex; /* Menggunakan flexbox untuk ikon dan teks menu */
+    align-items: center; /* Menyelaraskan ikon dan teks secara vertikal */
+    padding: 10px 12px; /* Padding internal item menu */
+    text-decoration: none; /* Menghapus garis bawah default link */
+    color: #bdc3c7; /* Warna teks item menu */
+    transition: background-color 0.2s, color 0.2s; /* Transisi halus untuk hover */
+    margin-bottom: 6px; /* Jarak bawah antar item menu */
+    border-radius: 6px; /* Sudut melengkung untuk item menu */
+    font-size: 0.9rem; /* Ukuran font item menu */
+}
+/* Efek hover untuk item menu */
+.menu a:hover {
+    background: #34495e; /* Warna latar belakang saat hover */
+    color: #fff; /* Warna teks saat hover */
+}
+/* Styling untuk item menu yang aktif */
+.menu a.active {
+    background: #7e47b8; /* Warna latar belakang primer untuk item aktif */
+    color: #fff; /* Warna teks putih untuk item aktif */
+    font-weight: 500; /* Teks lebih tebal untuk item aktif */
+}
+/* Styling untuk ikon di dalam item menu */
+.menu a i {
+    margin-right: 12px; /* Jarak kanan ikon dari teks */
+    width: 18px; /* Lebar area ikon untuk alignment */
+    text-align: center; /* Ikon di tengah area yang ditentukan */
+    font-size: 1rem; /* Ukuran font ikon */
+}
+
+/* Styling untuk tombol logout di bagian bawah sidebar */
+.logout {
+    margin-top: auto; /* Mendorong tombol logout ke bagian paling bawah sidebar */
+    color: #bdc3c7; /* Warna teks logout */
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    width: 100%;
+    padding: 10px 12px;
+    border-radius: 6px;
+    font-size: 0.9rem;
+    transition: background-color 0.2s, color 0.2s;
+}
+/* Styling untuk ikon di tombol logout */
+.logout i { margin-right: 12px; }
+/* Efek hover untuk tombol logout */
+.logout:hover {
+    background-color: #c0392b; /* Warna latar belakang merah saat hover (indikasi bahaya/logout) */
+    color: #fff; /* Warna teks putih saat hover */
+}
+
+/* ==========================================================================
+   Main Content Area
+   ========================================================================== */
+/* Styling untuk kontainer konten utama di sebelah kanan sidebar */
+.main {
+    flex: 1; /* .main mengisi sisa ruang horizontal di .content */
+    display: flex; /* Menggunakan flexbox untuk struktur internal .main */
+    flex-direction: column; /* Konten di .main ditumpuk vertikal (judul, filter, list/grid) */
+    overflow: hidden; /* .main itu sendiri tidak scroll, child-nya yang scroll jika perlu */
+    min-width: 0; /* Mencegah overflow horizontal dari child di dalam .main */
+    padding: 0 0 15px 0; /* Padding bawah untuk .main, padding atas/horizontal bisa diatur oleh child */
+}
+
+/* Styling untuk judul halaman di dalam .main */
+.main h2.page-title {
+    font-size: 1.5rem; /* Ukuran font judul halaman */
+    color: #2c3e50; /* Warna teks judul halaman */
+    margin-bottom: 15px; /* Jarak bawah judul halaman */
+    padding-bottom: 8px; /* Padding bawah sebelum border */
+    border-bottom: 1px solid #dfe3e8; /* Garis bawah tipis untuk judul halaman */
+    flex-shrink: 0; /* Mencegah judul menyusut */
+}
+
+/* ==========================================================================
+   Dashboard Layout (Grid)
+   ========================================================================== */
+/* Layout grid spesifik untuk halaman Dasbor */
+.main-dashboard { /* Versi awal dashboard layout */
+    display: grid;
+    grid-template-columns: 2fr 1fr; /* Kolom kiri 2 bagian, kolom kanan 1 bagian */
+    grid-template-rows: auto 1fr; /* Baris pertama auto untuk judul, baris kedua mengisi sisa */
+    gap: 15px; /* Jarak antar item grid */
+    flex-grow: 1; /* Agar .main-dashboard mengisi .main */
+    overflow: hidden; /* Mencegah grid scroll */
+}
+/* Penempatan judul halaman di layout grid dasbor */
+.main-dashboard .page-title { grid-column: 1 / -1; flex-shrink: 0; }
+/* Penempatan spesifik widget di layout grid dasbor (versi awal) */
+.main-dashboard .todo { grid-row: 2 / span 2; } /* Widget 'To Do' mengambil 2 baris */
+.main-dashboard .status { grid-row: 2 / span 1; } /* Widget 'Status' mengambil 1 baris */
+.main-dashboard .completed { grid-row: 3 / span 1; } /* Widget 'Completed' mengambil 1 baris */
+
+
+/* Styling umum untuk widget, form container, profile card, table container, dan filter container */
+.widget, .form-container, .profile-card, .table-container, .filters-container {
+    background: #fff; /* Warna latar belakang putih */
+    border-radius: 8px; /* Sudut melengkung */
+    padding: 18px; /* Padding internal */
+    box-shadow: 0 1px 3px rgba(0,0,0,0.07); /* Bayangan halus */
+    margin-bottom: 15px; /* Jarak bawah default (akan dioverride oleh grid gap jika di dalam grid) */
+}
+/* Menghapus margin bawah untuk elemen terakhir jenis ini untuk menghindari jarak ganda */
+.widget:last-child, .form-container:last-child, .profile-card:last-child, .table-container:last-child, .filters-container:last-child {
+    margin-bottom: 0;
+}
+
+/* Styling untuk judul (h3) di dalam widget */
+.widget h3 {
+    font-size: 1.15rem; /* Ukuran font judul widget */
+    margin-bottom: 12px; /* Jarak bawah judul widget */
+    color: #34495e; /* Warna teks judul widget */
+    padding-bottom: 8px; /* Padding bawah sebelum border */
+    border-bottom: 1px solid #f0f0f0; /* Garis bawah tipis untuk judul widget */
+}
+/* Styling untuk span (teks tambahan/jumlah) di dalam judul widget */
+.widget h3 span { font-size: 0.85rem; color: #777; }
+
+
+/* Styling untuk list tugas (umum) */
+/* Selector ini menargetkan div list di berbagai halaman */
+#todo-list, #completed-list, #managementTaskList, #historyTaskList {
+    padding-right: 2px; /* Ruang kecil untuk scrollbar jika ada */
+    /* max-height dan overflow-y akan diatur lebih spesifik oleh parent container jika perlu scroll */
+}
+/* Jika ingin widgetnya yang scroll (versi awal) */
+.widget.scrollable-list > div[id$="-list"] { /* Target div list di dalam widget scrollable */
+    max-height: 300px; /* Contoh max-height, sesuaikan */
+    overflow-y: auto; /* Membuat list bisa scroll */
+}
+
+
+/* Styling untuk setiap item tugas dalam bentuk kartu */
+.task-item-card {
+    background-color: #f9fafb; /* Warna latar belakang kartu tugas */
+    border: 1px solid #e7eaec; /* Border kartu tugas */
+    border-radius: 6px; /* Sudut melengkung kartu tugas */
+    padding: 12px; /* Padding internal kartu tugas */
+    margin-bottom: 10px; /* Jarak bawah antar kartu tugas */
+    display: flex; /* Menggunakan flexbox untuk layout internal kartu */
+    justify-content: space-between; /* Memberi jarak antara detail dan aksi */
+    align-items: center; /* Menyelaraskan item secara vertikal */
+    transition: box-shadow 0.2s ease, border-color 0.2s ease; /* Transisi halus untuk hover */
+    font-size: 0.85rem; /* Ukuran font dasar di kartu */
+}
+/* Efek hover untuk kartu tugas */
+.task-item-card:hover {
+    border-color: #d1d5db; /* Warna border berubah saat hover */
+    box-shadow: 0 2px 4px rgba(0,0,0,0.06); /* Bayangan lebih jelas saat hover */
+}
+/* Kontainer untuk detail tugas (judul, deskripsi, meta info) */
+.task-item-card .task-details { flex-grow: 1; margin-right: 10px;}
+/* Judul tugas */
+.task-item-card .task-details strong {
+    font-size: 0.95rem; /* Ukuran font judul tugas */
+    color: #1f2937; /* Warna teks judul tugas */
+    display: block; /* Membuat judul mengambil satu baris penuh */
+    margin-bottom: 2px; /* Jarak bawah judul */
+}
+/* Link untuk judul tugas */
+.task-details a.task-title-link {
+    text-decoration: none; /* Menghapus garis bawah default */
+    color: inherit; /* Mewarisi warna dari elemen strong induk */
+}
+.task-details a.task-title-link:hover strong {
+    text-decoration: underline; /* Garis bawah saat hover */
+    color: #7e47b8; /* Warna teks primer saat hover */
+}
+/* Deskripsi tugas */
+.task-item-card .task-details .description {
+    font-size: 0.8rem; /* Ukuran font deskripsi */
+    color: #4b5563; /* Warna teks deskripsi */
+    margin-bottom: 4px; /* Jarak bawah deskripsi */
+    word-break: break-word; /* Memastikan teks panjang tidak merusak layout */
+}
+/* Info meta (tanggal, prioritas, dll.) */
+.task-item-card .task-details .meta-info {
+    font-size: 0.75rem; /* Ukuran font meta info */
+    color: #6b7280; /* Warna teks meta info */
+}
+/* Styling khusus untuk kartu tugas yang sudah selesai */
+.task-item-card.completed .task-details strong {
+    color: #868e99; /* Warna judul lebih pudar */
+    font-weight: normal; /* Teks tidak tebal */
+}
+.task-item-card.completed .task-details .description,
+.task-item-card.completed .task-details .meta-info {
+    color: #9ca3af; /* Warna teks lebih pudar */
+}
+/* Kontainer untuk aksi tugas (select status, tombol edit/hapus) */
+.task-item-card .task-actions { display: flex; align-items: center; flex-shrink: 0; }
+/* Select dropdown untuk status tugas */
+.task-item-card .task-actions select,
+.task-item-card .task-actions select.task-status-select { /* Gabungkan styling serupa */
+    padding: 6px 8px;
+    border-radius: 5px;
+    border: 1px solid #d1d5db;
+    font-size: 0.8rem;
+    background-color: #fff;
+    margin-right: 8px;
+    min-width: 100px; /* Lebar minimal untuk select */
+    cursor: pointer;
+}
+/* Tombol aksi (edit, hapus, buka kembali) */
+.task-item-card .task-actions button, .task-item-card .task-actions a {
+    background: transparent; /* Latar belakang transparan */
+    color: #6b7280; /* Warna ikon tombol */
+    border: none; /* Tanpa border */
+    padding: 5px; /* Padding tombol */
+    border-radius: 50%; /* Membuat tombol (area klik) lingkaran */
+    cursor: pointer;
+    transition: color 0.2s, background-color 0.2s; /* Transisi hover */
+    font-size: 0.9rem; /* Ukuran ikon di tombol */
+    margin-left: 4px; /* Jarak antar tombol */
+    width: 28px; height: 28px; /* Ukuran tombol tetap */
+    display: inline-flex; align-items: center; justify-content: center; /* Memusatkan ikon */
+    text-decoration: none; /* Menghapus garis bawah untuk link */
+}
+/* Efek hover umum untuk tombol aksi */
+.task-item-card .task-actions button:hover, .task-item-card .task-actions a:hover {
+    background-color: #e5e7eb; /* Latar belakang abu-abu muda saat hover */
+}
+/* Warna spesifik saat hover untuk tombol edit dan buka kembali */
+.task-item-card .task-actions .edit-btn:hover, .task-item-card .task-actions .reopen-btn:hover { color: #2563eb; } /* Biru */
+/* Warna spesifik saat hover untuk tombol hapus */
+.task-item-card .task-actions .delete-btn:hover { color: #dc2626; } /* Merah */
+
+
+/* Progress Bar (Dashboard - Versi awal dengan conic-gradient langsung) */
+.progress-container { display: flex; justify-content: space-around; margin-top: 15px; }
+.progress { text-align: center; }
+.progress-circle { /* Ini adalah definisi awal, akan ada definisi lain di bawah */
+    width: 65px; height: 65px;
+    /* Variabel --progress akan di-set via JavaScript/inline style */
+    background: conic-gradient(#4caf50 0% var(--progress), #e7eaec var(--progress) 100%);
+    border-radius: 50%; display: flex; align-items: center; justify-content: center; position: relative; margin: 0 auto 8px;
+}
+.progress-circle.in-progress { background: conic-gradient(#2196f3 0% var(--progress), #e7eaec var(--progress) 100%); }
+.progress-circle.not-started { background: conic-gradient(#f44336 0% var(--progress), #e7eaec var(--progress) 100%); }
+.progress-circle::before { /* Lingkaran tengah untuk teks persentase */
+    content: attr(data-progress) '%'; /* Mengambil teks dari atribut data-progress */
+    position: absolute; width: 48px; height: 48px;
+    background: #fff; border-radius: 50%; display: flex; align-items: center; justify-content: center;
+    font-size: 0.85rem; font-weight: 600; color: #333;
+}
+.progress p { font-size: 0.8rem; color: #4b5563; }
+
+
+/* ==========================================================================
+   Pop-up Notifikasi & Kalender
+   ========================================================================== */
+/* Styling umum untuk popup notifikasi dan kalender */
+#notification-popup, #calendar-popup {
+    position: fixed; /* Posisi tetap relatif terhadap viewport */
+    top: 60px; /* Jarak dari atas */
+    background: #fff; border: 1px solid #ddd; border-radius: 8px; padding: 15px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1); z-index: 1001; /* Di atas header */
+    opacity: 0; transform: translateY(-10px) scale(0.95); /* Awalnya tersembunyi dan sedikit di atas/kecil */
+    transition: opacity 0.2s ease, transform 0.2s ease, visibility 0s 0.2s; /* Transisi untuk muncul/hilang */
+    /* visibility: hidden; (diganti display: none; di bawah) */
+    display: none; /* Awalnya tidak ditampilkan */
+}
+/* Posisi spesifik popup notifikasi */
+#notification-popup { right: 20px; width: 300px; /* Lebar popup notifikasi */ }
+/* Posisi spesifik popup kalender */
+#calendar-popup { right: 65px; }
+
+/* Styling saat popup ditampilkan (class .show ditambahkan via JS) */
+#notification-popup.show, #calendar-popup.show {
+    opacity: 1; transform: translateY(0) scale(1); /* Muncul ke posisi normal */
+    /* visibility: visible; (diganti display: block; di bawah) */
+    display: block; /* Menampilkan popup */
+    transition: opacity 0.2s ease, transform 0.2s ease, visibility 0s 0s;
+}
+
+/* Judul di dalam popup notifikasi */
+#notification-popup h4 {
+    margin-top: 0; font-size: 1rem; border-bottom: 1px solid #eee;
+    padding-bottom: 8px; margin-bottom: 10px; color: #333;
+}
+/* List notifikasi */
+#notification-list { list-style: none; padding: 0; max-height: 250px; /* Tinggi maksimal sebelum scroll */ overflow-y: auto; }
+/* Setiap item notifikasi */
+#notification-list li {
+    padding: 8px 5px; border-bottom: 1px solid #f0f0f0; font-size: 0.85rem; line-height: 1.4;
+    display: flex; justify-content: space-between; align-items: center; /* Teks notif dan waktu bersebelahan */
+}
+#notification-list li:last-child { border-bottom: none; } /* Hapus border untuk item terakhir */
+/* Waktu notifikasi */
+.notif-time { font-size: 0.75rem; color: #777; white-space: nowrap; margin-left: 10px; }
+
+
+/* ==========================================================================
+   General Form Styles
+   ========================================================================== */
+/* Grup form (label dan input) */
+.form-group { margin-bottom: 15px; }
+/* Label untuk input form */
+.form-group label {
+    display: block; /* Label di atas input */
+    margin-bottom: 5px; /* Jarak bawah label */
+    font-weight: 500; /* Teks label tebal */
+    font-size: 0.85rem;
+}
+/* Styling umum untuk input teks, email, password, tanggal, textarea, dan select */
+.form-group input[type="text"],
+.form-group input[type="email"],
+.form-group input[type="password"],
+.form-group input[type="date"],
+.form-group textarea,
+.form-group select {
+    width: 100%; /* Input mengisi lebar .form-group */
+    padding: 9px 12px; /* Padding internal input */
+    border: 1px solid #d1d5db; /* Border input */
+    border-radius: 6px; /* Sudut melengkung input */
+    font-size: 0.9rem; /* Ukuran font teks input */
+    background-color: #f9fafb; /* Warna latar belakang input */
+    color: #1f2937; /* Warna teks input */
+}
+/* Efek fokus untuk input */
+.form-group input:focus, .form-group textarea:focus, .form-group select:focus {
+    border-color: #7e47b8; /* Warna border primer saat fokus */
+    box-shadow: 0 0 0 2.5px rgba(126, 71, 184, 0.2); /* Bayangan outer glow saat fokus */
+    outline: none; /* Menghapus outline default browser */
+    background-color: #fff; /* Latar belakang putih saat fokus */
+}
+/* Styling khusus untuk textarea */
+.form-group textarea { min-height: 90px; resize: vertical; /* Hanya bisa di-resize vertikal */ }
+
+
+/* ==========================================================================
+   Tombol (Buttons)
+   ========================================================================== */
+/* Styling umum untuk tombol */
+.btn {
+    padding: 9px 18px; /* Padding tombol */
+    border: none; /* Tanpa border default */
+    border-radius: 6px; /* Sudut melengkung tombol */
+    cursor: pointer; /* Kursor pointer */
+    font-size: 0.9rem; /* Ukuran font teks tombol */
+    font-weight: 500; /* Teks tombol tebal */
+    transition: background-color 0.2s ease, box-shadow 0.2s ease, transform 0.1s ease; /* Transisi halus */
+    text-decoration: none; /* Menghapus garis bawah untuk link yang dijadikan tombol */
+    display: inline-flex; /* Agar ikon dan teks bisa sejajar dan tombol tidak mengambil full width */
+    align-items: center; /* Menyelaraskan ikon dan teks di tombol */
+    justify-content: center; /* Memusatkan konten tombol */
+    gap: 6px; /* Jarak antara ikon dan teks di tombol */
+}
+/* Efek saat tombol ditekan */
+.btn:active { transform: translateY(1px); /* Tombol sedikit turun saat ditekan */ }
+
+/* Varian tombol primer */
+.btn-primary { background-color: #7e47b8; color: white; }
+.btn-primary:hover { background-color: #6a3aa2; box-shadow: 0 2px 4px rgba(0,0,0,0.1); }
+/* Varian tombol sekunder */
+.btn-secondary { background-color: #6c757d; color: white; }
+.btn-secondary:hover { background-color: #545b62; box-shadow: 0 2px 4px rgba(0,0,0,0.1); }
+/* Varian tombol bahaya (danger) */
+.btn-danger { background-color: #e74c3c; color: white; }
+.btn-danger:hover { background-color: #c0392b; box-shadow: 0 2px 4px rgba(0,0,0,0.1); }
+/* Tombol yang mengisi lebar penuh kontainernya */
+.btn-full-width { display: block; width: 100%; } /* Ini akan membuat tombol menjadi block-level */
+
+/* Kontainer untuk tombol aksi form (misal: Simpan, Batal) */
+.form-actions {
+    margin-top: 20px; /* Jarak atas */
+    display: flex; /* Menggunakan flexbox */
+    gap: 10px; /* Jarak antar tombol */
+    justify-content: center; /* Tombol-tombol akan terpusat di dalam kontainer .form-actions */
+}
+/* Tombol di dalam .form-actions */
+.form-actions .btn {
+    /* flex-grow: 1; Dihapus agar tombol tidak memenuhi lebar kontainer, lebarnya akan sesuai konten. */
+}
+
+
+/* ==========================================================================
+   Filters Container
+   ========================================================================== */
+/* Styling untuk kontainer filter (digunakan di halaman manajemen, riwayat) */
+.filters-container {
+    background: #fff;
+    border-radius: 8px;
+    padding: 12px 15px; /* Padding vertikal dikurangi */
+    box-shadow: 0 1px 3px rgba(0,0,0,0.07);
+    margin-bottom: 15px;
+    display: flex;
+    gap: 10px; /* Gap dikurangi */
+    align-items: flex-end;
+    flex-wrap: wrap;
+    flex-shrink: 0;
+}
+.filters-container .form-group {
+    margin-bottom: 0;
+    flex-grow: 1;
+    min-width: 150px;
+}
+.filters-container label {
+    font-size: 0.8rem;
+    margin-bottom: 3px; /* Margin label dikurangi */
+}
+.filters-container select,
+.filters-container input[type="text"] { /* Target spesifik input text untuk datepicker */
+    padding: 7px 10px; /* Padding input dikurangi */
+    font-size: 0.85rem;
+    height: 34px; /* Tinggi input dan tombol disamakan */
+    border: 1px solid #d1d5db; /* Pastikan border ada */
+    border-radius: 6px; /* Pastikan radius ada */
+    width: 100%; /* Input mengisi .form-group */
+}
+/* Grup untuk tombol filter (Terapkan, Reset) */
+.filters-container .btn-filter-group {
+    display: flex;
+    gap: 8px; /* Jarak antar tombol */
+    align-items: flex-end; /* Sejajar dengan input lain */
+    margin-left: auto; /* Mendorong grup tombol ke kanan jika ada ruang */
+}
+/* Tombol di dalam filter container */
+.filters-container .btn {
+    padding: 7px 15px; /* Padding tombol disesuaikan, tinggi sama dengan input */
+    font-size: 0.85rem;
+    height: 34px; /* Tinggi tombol sama dengan input */
+    min-width: 100px; /* Lebar minimal tombol */
+    white-space: nowrap; /* Mencegah teks tombol wrap */
+}
+
+
+/* ==========================================================================
+   Pesan "Tidak Ada Tugas"
+   ========================================================================== */
+/* Styling untuk pesan yang ditampilkan jika tidak ada tugas */
+.no-tasks-message {
+    text-align:center; padding: 25px; color: #6b7280; font-style: italic;
+    background-color: #f9fafb; border-radius: 6px; border: 1px dashed #e5e7eb;
+}
+
+
+/* ==========================================================================
+   Halaman Profil
+   ========================================================================== */
+.main .profile-card {
+    background: rgba(255, 255, 255, 0.95); /* Latar belakang semi-transparan */
+    backdrop-filter: blur(5px); /* Efek blur pada background di belakangnya */
+    padding: 30px 35px; /* Padding kembali ke ukuran awal yang diminta */
+    border-radius: 10px; /* Radius sudut */
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2); /* Bayangan lebih menonjol */
+    width: 100%; /* Mengisi lebar kontainer, dibatasi oleh max-width */
+    max-width: 380px; /* Lebar form/kartu kembali ke ukuran awal yang diminta */
+    text-align: center;
+    position: relative; /* Untuk z-index jika diperlukan */
+    z-index: 2;
+    margin: 20px auto; /* Tetap terpusat */
+}
+.profile-card img#profileImageMain {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    margin-bottom: 15px;
+    border: 3px solid #7e47b8;
+    object-fit: cover;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+.profile-card h2#profileName { color: #333; margin-bottom: 5px; font-size: 1.6rem; }
+.profile-card p#profileEmail { color: #666; margin-bottom: 25px; font-size: 1rem; }
+.profile-actions {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin-top: 15px;
+}
+
+/* Styling halaman profil yang lebih menarik (versi paling baru/alternatif) */
+.main .profile-page-container {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    padding: 10px;
+}
+
+.main .profile-card-display {
+    background: #ffffff;
+    border-radius: 12px;
+    padding: 25px 30px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+    text-align: center;
+    flex-basis: 350px;
+    flex-shrink: 0;
+    height: auto;
+}
+.profile-card-display img#profileImageMain {
+    width: 130px;
+    height: 130px;
+    border-radius: 50%;
+    margin-bottom: 18px;
+    border: 4px solid #7e47b8;
+    object-fit: cover;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+.profile-card-display h2#profileName {
+    color: #2c3e50;
+    margin-bottom: 6px;
+    font-size: 1.7rem;
+    font-weight: 600;
+}
+.profile-card-display p#profileEmail {
+    color: #555;
+    margin-bottom: 0;
+    font-size: 1rem;
+}
+
+.main .profile-actions-and-info {
+    background: #ffffff;
+    border-radius: 12px;
+    padding: 25px 30px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+    flex-grow: 1;
+}
+.profile-actions-and-info h3.section-title {
+    font-size: 1.2rem;
+    color: #34495e;
+    margin-bottom: 20px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #f0f0f0;
+}
+
+.profile-actions a.btn {
+    width: 100%;
+    text-align: center;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    font-size: 0.95rem;
+}
+.profile-actions a.btn i {
+    margin-right: 8px;
+}
+
+
+/* ==========================================================================
+   Pengaturan Layout Spesifik .main dan Widget di Dashboard (Evolusi dari .main-dashboard)
+   ========================================================================== */
+.main-dashboard .widget {
+    background: #fff;
+    border-radius: 8px;
+    padding: 18px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.07);
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+}
+.main-dashboard .widget h3 {
+    font-size: 1.15rem;
+    margin-bottom: 12px;
+    color: #34495e;
+    padding-bottom: 8px;
+    border-bottom: 1px solid #f0f0f0;
+    flex-shrink: 0;
+}
+.main-dashboard .widget > div[id$="-list"] {
+    flex-grow: 1;
+    overflow-y: auto;
+    padding-right: 5px;
+}
+.main-dashboard .widget.status .progress-container{
+    flex-grow: 1;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    overflow-y: visible;
+}
+
+
+/* ==========================================================================
+   Table Container (untuk halaman Manajemen & Riwayat)
+   ========================================================================== */
+.table-container {
+    background: #fff;
+    border-radius: 8px;
+    padding: 18px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.07);
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+}
+.table-container #managementTaskList,
+.table-container #historyTaskList {
+    flex-grow: 1;
+    overflow-y: auto;
+    padding-right: 8px;
+}
+
+
+/* ==========================================================================
+   Dashboard Layout Baru (Grid 4 Kotak / 2 Kolom) dan Styling Terkait
+   ========================================================================== */
+html {
+    font-size: 14px;
+}
+
+.dashboard-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: auto 1fr;
+    gap: 15px;
+    flex-grow: 1;
+    overflow: hidden;
+    height: calc(100% - 40px - 15px);
+    align-items: stretch;
+}
+
+.dashboard-grid .page-title-container {
+    grid-column: 1 / -1;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 0;
+    flex-shrink: 0;
+    height: 40px;
+    border-bottom: 1px solid #dfe3e8;
+}
+.dashboard-grid .page-title-container .page-title {
+    margin-bottom: 0;
+    border-bottom: none;
+}
+
+.dashboard-left-column,
+.dashboard-right-column {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    overflow: hidden;
+}
+
+.dashboard-grid .widget h3 {
+    font-size: 1.05rem;
+    margin-bottom: 8px;
+    color: #34495e;
+    padding-bottom: 8px;
+    border-bottom: 1px solid #f0f0f0;
+    flex-shrink: 0;
+}
+
+.dashboard-grid .widget .widget-content-area {
+    flex-grow: 1;
+    overflow-y: auto;
+    position: relative;
+    padding: 5px;
+    padding-block-end: 10px;
+}
+
+.dashboard-grid .widget .chart-container canvas {
+    max-height: 180px;
+    width: 100% !important;
+    height: auto !important;
+}
+
+.dashboard-right-column .widget {
+    height: 100%;
+}
+.dashboard-right-column #dashboard-active-tasks-list {
+    overflow-y: auto;
+    padding-right: 8px;
+    flex-grow: 1;
+    height: 68vh;
+}
+
+
+/* Progress Circles untuk Status Tugas di Dashboard (versi conic-gradient dengan variabel CSS) */
+.status-progress-container {
+    display: flex;
+    justify-content: space-around;
+}
+.progress-item {
+    text-align: center;
+    flex: 1;
+}
+.progress-circle-display,
+.progress-circle {
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    margin: 0 auto 8px;
+    background: conic-gradient(
+        var(--progress-color, #e7eaec) 0% var(--progress-percent, 0%),
+        #e7eaec var(--progress-percent, 0%) 100%
+    );
+}
+.progress-circle-display::before,
+.progress-circle::before {
+    content: attr(data-progress) '%';
+    position: absolute;
+    width: calc(100% - 16px);
+    height: calc(100% - 16px);
+    background: #fff;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: #333;
+    z-index: 1;
+}
+.progress-item p {
+    font-size: 0.8rem;
+    color: #4b5563;
+    margin-top: 5px;
+}
+
+
+/* ==========================================================================
+   Filter Performa Dashboard & Filter Umum (Versi Minimalis)
+   ========================================================================== */
+.performance-filter-container,
+.filters-container
+{
+    background: #fff;
+    border-radius: 8px;
+    padding: 10px 15px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.07);
+    margin-bottom: 15px;
+    display: flex;
+    gap: 10px;
+    align-items: flex-end;
+    flex-wrap: wrap;
+    flex-shrink: 0;
+    align-items: center;
+}
+.performance-filter-container {
+    margin-bottom: 0;
+    padding: 0;
+    box-shadow: none;
+    background: transparent;
+}
+
+.performance-filter-container .form-group,
+.filters-container .form-group {
+    margin-bottom: 0;
+    flex-grow: 0;
+    min-width: 150px;
+}
+.performance-filter-container label,
+.filters-container label {
+    font-size: 0.8rem;
+    margin-bottom: 4px;
+    display: block;
+}
+.performance-filter-container select,
+.performance-filter-container input[type="text"],
+.filters-container select,
+.filters-container input[type="text"] {
+    padding: 7px 10px;
+    font-size: 0.85rem;
+    height: 36px;
+    border: 1px solid #d1d5db;
+    border-radius: 6px;
+    width: 100%;
+}
+
+.filter-preset-buttons {
+    display: flex;
+    gap: 5px;
+    align-items: flex-end;
+    margin-bottom: 0;
+}
+.filter-preset-buttons .btn {
+    padding: 7px 10px;
+    font-size: 0.8rem;
+    height: 36px;
+    background-color: #f0f3f7;
+    color: #555;
+    border: 1px solid #dfe3e8;
+}
+.filter-preset-buttons .btn.active,
+.filter-preset-buttons .btn:hover {
+    background-color: #7e47b8;
+    color: white;
+    border-color: #7e47b8;
+}
+
+.filter-action-buttons {
+    display: flex;
+    gap: 8px;
+    align-items: flex-end;
+    margin-left: auto;
+}
+.filter-action-buttons .btn {
+    padding: 7px 15px;
+    font-size: 0.85rem;
+    height: 36px;
+    min-width: 80px;
+}
+
+.performance-filter-form {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+    margin-bottom: 10px;
+    flex-wrap: nowrap;
+    padding: 5px 0;
+}
+.performance-filter-form label {
+    font-size: 0.85rem;
+    white-space: nowrap;
+    margin-right: 5px;
+    color: #555;
+}
+.performance-filter-form .filter-preset-buttons {
+    display: flex;
+    gap: 5px;
+}
+.performance-filter-form .filter-preset-buttons .btn {
+    padding: 5px 10px;
+    font-size: 0.75rem;
+    height: 30px;
+    background-color: #f0f3f7;
+    color: #555;
+    border: 1px solid #dfe3e8;
+}
+.performance-filter-form .filter-preset-buttons .btn.active,
+.performance-filter-form .filter-preset-buttons .btn:hover {
+    background-color: #7e47b8;
+    color: white;
+    border-color: #7e47b8;
+}
+.performance-filter-form input[type="text"] {
+    padding: 5px 8px;
+    font-size: 0.8rem;
+    height: 30px;
+    border: 1px solid #d1d5db;
+    border-radius: 4px;
+    width: 150px;
+    margin-left: 5px;
+}
+.performance-filter-form .btn-apply-perf {
+    padding: 5px 12px;
+    font-size: 0.8rem;
+    height: 30px;
+    margin-left: 5px;
+}
+
+
+/* ==========================================================================
+   Responsive Design
+   ========================================================================== */
+/* Tampilan untuk layar medium (tablet, <= 992px) */
+@media (max-width: 992px) {
+    /* Penyesuaian layout grid dashboard */
+    .main-dashboard {
+        grid-template-columns: 1fr;
+        grid-template-rows: auto auto auto auto;
+    }
+    .main-dashboard .todo { grid-row: 2; }
+    .main-dashboard .status { grid-row: 3; }
+    .main-dashboard .completed { grid-row: 4; }
+
+    .dashboard-grid {
+        grid-template-columns: 1fr;
+        height: auto;
+    }
+    .performance-filter-container {
+        flex-direction: column;
+        align-items: stretch;
+    }
+    .performance-filter-container .form-group,
+    .performance-filter-container .filter-preset-buttons,
+    .performance-filter-container .filter-action-buttons {
+        width: 100%;
+        margin-left: 0;
+    }
+
+    /* Penyesuaian sidebar */
+    .sidebar {
+        width: 180px; /* Lebar sidebar dikurangi */
+        /* Tinggi dan posisi sticky diwarisi dari style dasar dan tidak berubah di breakpoint ini,
+           jadi properti height dan top tidak perlu didefinisikan ulang di sini jika sama. */
+    }
+    /* Penyesuaian search bar */
+    .search-bar { max-width: 300px; margin: 0 15px; }
+}
+
+/* Tampilan untuk layar kecil (mobile, <= 768px) */
+@media (max-width: 768px) {
+    html { font-size: 13.5px; }
+
+    .header {
+        height: auto;
+        padding: 8px 15px;
+        flex-wrap: wrap;
+    }
+    .header-left { order: 1; width: auto; margin-bottom: 8px; }
+    .header-right { order: 2; margin-left: auto; margin-bottom: 8px; }
+    .search-bar { order: 3; width: 100%; margin: 0 0 5px 0; max-width: none; }
+
+    .content {
+        flex-direction: column;
+        padding: 10px;
+        gap: 10px;
+        max-height: none;
+        overflow: visible;
+        height: auto;
+        /* min-height calculation can be tricky with auto header, ensure it works as intended or simplify */
+        /* min-height: calc(100vh - auto - 20px); */
+    }
+
+    .sidebar {
+        width: 100%;
+        position: static;
+        height: auto;
+        flex-direction: row;
+        justify-content: flex-start;
+        padding: 10px;
+        overflow-x: auto;
+        white-space: nowrap;
+        border-radius: 8px;
+        margin-bottom:10px;
+    }
+    .sidebar .menu { display: flex; gap: 5px; width: auto; }
+    .sidebar .menu a { margin-bottom: 0; padding: 8px 10px; font-size: 0.85rem; }
+    .sidebar .logout { display: none; }
+
+    .main {
+        padding: 0;
+        overflow-y: visible;
+    }
+    .main h2.page-title { font-size: 1.3rem; margin-bottom: 10px; }
+
+    .widget.scrollable-list > div[id$="-list"],
+    #todo-list, #completed-list, #managementTaskList, #historyTaskList {
+        max-height: 250px;
+    }
+
+    .filters-container {
+        flex-direction: column;
+        align-items: stretch;
+    }
+    .filters-container .form-group,
+    .filters-container .filter-preset-buttons,
+    .filters-container .filter-action-buttons {
+        width: 100%;
+        margin-left: 0;
+    }
+    .filter-action-buttons {
+        flex-direction: column;
+    }
+    .filter-action-buttons .btn {
+        width: 100%;
+    }
+
+    .main .profile-page-container {
+        flex-direction: column;
+    }
+    .profile-actions {
+        flex-direction: column;
+        gap: 10px;
+    }
+    .profile-actions a.btn {
+        width: 100%;
+    }
+}
+
+
+/* Untuk styling popup notifikasi dan tombol hapus */
+#notification-popup {
+    max-height: 400px;
+}
+
+#notification-popup .notification-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 15px;
+    border-bottom: 1px solid #eee;
+    position: sticky;
+    top: 0;
+    background-color: white;
+    z-index: 1;
+}
+
+#notification-popup .notification-header h4 {
+    margin: 0;
+    font-size: 1.1em;
+}
+
+.btn-clear-notif {
+    background-color: #e74c3c;
+    color: white;
+    border: none;
+    padding: 6px 10px;
+    font-size: 0.8em;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+.btn-clear-notif:hover {
+    background-color: #c0392b;
+}
+
+#notification-popup ul#notification-list {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    overflow-y: auto;
+    height: 50vh;
+}
+
+#notification-popup ul#notification-list li {
+    padding: 10px 15px;
+    border-bottom: 1px solid #f0f0f0;
+    font-size: 0.9em;
+    display: flex;
+    flex-direction: column;
+}
+#notification-popup ul#notification-list li:last-child {
+    border-bottom: none;
+}
+
+#notification-popup ul#notification-list li.no-notifications {
+    text-align: center;
+    color: #777;
+    padding: 20px 15px;
+}
+
+#notification-popup .notif-time {
+    font-size: 0.8em;
+    color: #888;
+    margin-top: 4px;
+}
+
+#notification-popup .notif-success {
+    border-left: 3px solid #2ecc71;
+    background-color: #f2fdf5;
+}
+#notification-popup .notif-error {
+    border-left: 3px solid #e74c3c;
+    background-color: #fef6f5;
+}
+#notification-popup .notif-info {
+    border-left: 3px solid #3498db;
+    background-color: #f5faff;
+}
+
+.header-right .fa-bell.has-notif {
+    color: #e74c3c;
+    position: relative;
+}
+.header-right .fa-bell.has-notif::after {
+    content: '';
+    position: absolute;
+    top: 0px;
+    right: 0px;
+    width: 8px;
+    height: 8px;
+    background-color: red;
+    border-radius: 50%;
+    border: 1px solid white;
+}
