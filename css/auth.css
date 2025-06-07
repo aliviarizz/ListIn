@@ -1,0 +1,297 @@
+/* css/auth.css */
+html.auth-html, body.auth-page {
+    height: 100%;
+    overflow: hidden;
+}
+
+body.auth-page {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    background-image: url('../images/auth-bg.jpg');
+    background-size: cover;
+    background-position: center;
+    font-family: 'Poppins', sans-serif;
+    padding: 20px;
+    position: relative;
+}
+body.auth-page::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background-color: rgba(0,0,0,0.5);
+    z-index: 1;
+    transition: background-color 0.3s ease;
+}
+
+.auth-container {
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(5px);
+    padding: 30px 35px;
+    border-radius: 10px;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+    width: 100%;
+    max-width: 380px; /* Bisa dikembalikan ke lebar semula jika tidak ada tombol sosial */
+    text-align: center;
+    position: relative;
+    z-index: 2;
+    animation: fadeInScale 0.5s ease-out;
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+@keyframes fadeInScale {
+    from { opacity: 0; transform: scale(0.95); }
+    to { opacity: 1; transform: scale(1); }
+}
+
+.auth-container .logo-container {
+    margin-bottom: 15px;
+}
+.auth-container .logo-container h1 {
+    font-size: 2.5rem;
+    color: #7e47b8;
+    margin:0;
+    font-weight: 600;
+    transition: color 0.3s ease;
+}
+
+.auth-container h2 {
+    color: #333;
+    margin-bottom: 8px;
+    font-size: 1.4rem;
+    font-weight: 500;
+    transition: color 0.3s ease;
+}
+.auth-container p.subtitle {
+    color: #555;
+    margin-bottom: 25px;
+    font-size: 0.9rem;
+    transition: color 0.3s ease;
+}
+
+.auth-message {
+    padding: 10px 15px;
+    border-radius: 5px;
+    margin-bottom: 15px;
+    text-align: center;
+    font-size: 0.85rem;
+}
+.auth-message p { margin: 0.3em 0; }
+.auth-message.success {
+    background-color: #d4edda;
+    color: #155724;
+    border: 1px solid #c3e6cb;
+}
+.auth-message.error {
+    background-color: #f8d7da;
+    color: #721c24;
+    border: 1px solid #f5c6cb;
+}
+
+.form-group {
+    margin-bottom: 18px;
+    text-align: left;
+    position: relative;
+}
+.form-group label {
+    display: block; margin-bottom: 6px; font-weight: 500;
+    color: #444;
+    font-size: 0.85rem;
+    transition: color 0.3s ease;
+}
+.form-group input[type="text"],
+.form-group input[type="email"],
+.form-group input[type="password"] {
+    width: 100%;
+    padding: 10px 12px;
+    border: 1px solid #ccc;
+    background-color: #fff;
+    color: #333;
+    border-radius: 6px;
+    font-size: 0.9rem;
+    box-sizing: border-box;
+    transition: border-color 0.2s, box-shadow 0.2s, background-color 0.3s, color 0.3s;
+}
+.form-group input:focus {
+    border-color: #7e47b8;
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(126, 71, 184, 0.2);
+}
+
+.form-group.forgot-password-link {
+    text-align: right;
+    margin-top: -10px;
+    margin-bottom: 15px;
+}
+.form-group.forgot-password-link a {
+    font-size: 0.8rem;
+    color: #7e47b8;
+    text-decoration: none;
+}
+.form-group.forgot-password-link a:hover { text-decoration: underline; }
+
+.btn-submit {
+    background-color: #7e47b8;
+    color: white;
+    padding: 11px 20px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 0.95rem;
+    font-weight: 500;
+    transition: background-color 0.2s ease, transform 0.1s ease;
+    display: block;
+    width: 100%;
+    margin-top: 10px;
+}
+.btn-submit:hover { background-color: #6a3aa2; }
+.btn-submit:active { transform: translateY(1px); }
+
+/* HAPUS ATAU KOMENTARI BAGIAN LOGIN SOSIAL JIKA TIDAK DIGUNAKAN LAGI */
+/*
+.social-login-divider {
+    margin: 20px 0;
+    text-align: center;
+    position: relative;
+    color: #777;
+    font-size: 0.85rem;
+}
+.social-login-divider span {
+    background-color: rgba(255, 255, 255, 0.95);
+    padding: 0 10px;
+    position: relative;
+    z-index: 1;
+}
+.social-login-divider::before,
+.social-login-divider::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    width: calc(50% - 30px);
+    height: 1px;
+    background-color: #ddd;
+    z-index: 0;
+}
+.social-login-divider::before { left: 0; }
+.social-login-divider::after { right: 0; }
+
+.btn-social-login {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    padding: 10px 15px;
+    border-radius: 6px;
+    text-decoration: none;
+    font-size: 0.9rem;
+    font-weight: 500;
+    margin-bottom: 15px;
+    transition: background-color 0.2s ease, box-shadow 0.1s ease, border-color 0.2s ease;
+    border: 1px solid #ddd;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+}
+.btn-social-login i {
+    margin-right: 10px;
+    font-size: 1.2em;
+}
+.btn-social-login.google {
+    background-color: #fff;
+    color: #444;
+    border-color: #ccc;
+}
+.btn-social-login.google:hover {
+    background-color: #f8f8f8;
+    border-color: #bbb;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.08);
+}
+*/
+
+.auth-link {
+    margin-top: 25px; /* Sedikit lebih banyak jarak jika tidak ada tombol sosial */
+    font-size: 0.85rem;
+    color: #444;
+    transition: color 0.3s ease;
+}
+.auth-link a {
+    color: #7e47b8;
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.3s ease;
+}
+.auth-link a:hover { text-decoration: underline; }
+
+.error-message {
+    color: #e74c3c;
+    font-size: 0.8rem;
+    margin-top: 5px;
+    display: block;
+    text-align: left;
+}
+
+/* ==========================================================================
+   DARK THEME STYLES FOR AUTH PAGE
+   ========================================================================== */
+html.dark-theme-active body.auth-page::before {
+    background-color: rgba(0,0,0,0.7);
+}
+html.dark-theme-active .auth-container {
+    background: rgba(30, 30, 30, 0.92);
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.5);
+}
+html.dark-theme-active .auth-container .logo-container h1 { color: #bb86fc; }
+html.dark-theme-active .auth-container h2 { color: #e0e0e0; }
+html.dark-theme-active .auth-container p.subtitle { color: #b0b0b0; }
+
+html.dark-theme-active .auth-message.success {
+    background-color: #2a4d32;
+    color: #a5d6a7;
+    border-color: #4c8c4a;
+}
+html.dark-theme-active .auth-message.error {
+    background-color: #4d2a2b;
+    color: #ffab91;
+    border-color: #8d4c47;
+}
+
+html.dark-theme-active .form-group label { color: #c0c0c0; }
+html.dark-theme-active .form-group.forgot-password-link a { color: #bb86fc; }
+html.dark-theme-active .form-group input[type="text"],
+html.dark-theme-active .form-group input[type="email"],
+html.dark-theme-active .form-group input[type="password"] {
+    background-color: #2c2c2c;
+    border-color: #555;
+    color: #e0e0e0;
+}
+html.dark-theme-active .form-group input:focus {
+    border-color: #bb86fc;
+    box-shadow: 0 0 0 3px rgba(187, 134, 252, 0.3);
+    background-color: #333;
+}
+html.dark-theme-active .btn-submit {
+    background-color: #bb86fc;
+    color: #121212;
+}
+html.dark-theme-active .btn-submit:hover { background-color: #a06fec; }
+
+/* HAPUS ATAU KOMENTARI BAGIAN LOGIN SOSIAL DARK MODE */
+/*
+html.dark-theme-active .social-login-divider { color: #aaa; }
+html.dark-theme-active .social-login-divider span { background-color: rgba(30, 30, 30, 0.92); }
+html.dark-theme-active .social-login-divider::before,
+html.dark-theme-active .social-login-divider::after { background-color: #444; }
+
+html.dark-theme-active .btn-social-login.google {
+    background-color: #333;
+    color: #eee;
+    border-color: #555;
+}
+html.dark-theme-active .btn-social-login.google:hover {
+    background-color: #404040;
+    border-color: #666;
+}
+*/
+
+html.dark-theme-active .auth-link { color: #b0b0b0; }
+html.dark-theme-active .auth-link a { color: #bb86fc; }
+html.dark-theme-active .error-message { color: #ff8a80; }

@@ -1,0 +1,1999 @@
+/* ==========================================================================
+   Reset dan Base Styles
+   ========================================================================== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    background: #eef1f5;
+    font-family: 'Poppins', sans-serif;
+    color: #3c4250;
+    overflow-x: hidden;
+    line-height: 1.55;
+}
+
+/* ==========================================================================
+   Header
+   ========================================================================== */
+.header {
+    background: #ffffff;
+    width: 100%;
+    padding: 10px 25px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    height: 55px;
+}
+
+.header-left {
+    display: flex;
+    align-items: center;
+}
+
+.header-profile-pic {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    margin-right: 12px;
+    cursor: pointer;
+    border: 1.5px solid #7e47b8;
+    object-fit: cover;
+}
+.header-profile-pic:hover {
+    opacity: 0.85;
+}
+
+.header-left h2 {
+    color: #7e47b8;
+    font-size: 1.7rem;
+    margin: 0;
+}
+
+.search-bar {
+    flex-grow: 1;
+    max-width: 450px;
+    margin: 0 25px;
+    display: flex;
+    align-items: center;
+    background: #f0f3f7;
+    padding: 7px 15px;
+    border-radius: 25px;
+    border: 1px solid #dfe3e8;
+}
+.search-bar input {
+    border: none;
+    outline: none;
+    width: 100%;
+    background: transparent;
+    font-size: 0.9rem;
+    color: #555;
+}
+.search-bar input::placeholder {
+    color: #888;
+}
+.search-bar i {
+    color: #7e47b8;
+    margin-left: 8px;
+    font-size: 1rem;
+}
+.search-bar button i.fa-search {
+    color: #7e47b8;
+    font-size: 1rem;
+}
+
+.header-right {
+    display: flex;
+    align-items: center;
+}
+.header-right i.fas {
+    color: #5f6368;
+    padding: 8px;
+    font-size: 1.2rem;
+    cursor: pointer;
+    transition: color 0.2s, background-color 0.2s;
+    margin-left: 10px;
+    border-radius: 50%;
+}
+.header-right i.fas:hover {
+    color: #7e47b8;
+    background-color: #f0e9f7;
+}
+.header-right i.fas.fa-bell.has-notif {
+    position: relative;
+}
+.header-right i.fas.fa-bell.has-notif::after {
+    content: '';
+    position: absolute;
+    top: 6px;
+    right: 6px;
+    width: 8px;
+    height: 8px;
+    background-color: #ef4444;
+    border-radius: 50%;
+    border: 1px solid white;
+}
+
+.date-container {
+    text-align: right;
+    margin-left: 15px;
+}
+.date-container p {
+    margin: 0;
+    font-size: 0.8rem;
+    color: #555;
+}
+.date-container span {
+    color: #7e47b8;
+    font-weight: 500;
+    font-size: 0.8rem;
+}
+
+/* ==========================================================================
+   Content Area (Sidebar + Main Content)
+   ========================================================================== */
+.content {
+    display: flex;
+    flex: 1;
+    padding: 15px;
+    gap: 15px;
+    max-height: calc(100vh - 55px);
+    overflow: hidden;
+}
+
+/* ==========================================================================
+   Sidebar
+   ========================================================================== */
+.sidebar {
+    background: #2c3e50;
+    color: #ecf0f1;
+    padding: 15px;
+    display: flex;
+    flex-direction: column;
+    border-radius: 8px;
+    height: calc(100vh - 55px - 30px);
+    position: sticky;
+    top: calc(55px + 15px);
+    flex-shrink: 0;
+    overflow-y: auto;
+}
+.sidebar::-webkit-scrollbar {
+    display: none;
+}
+
+.menu {
+    width: 100%;
+}
+.menu a {
+    display: flex;
+    align-items: center;
+    padding: 10px 12px;
+    text-decoration: none;
+    color: #bdc3c7;
+    transition: background-color 0.2s, color 0.2s;
+    margin-bottom: 6px;
+    border-radius: 6px;
+    font-size: 0.9rem;
+}
+.menu a:hover {
+    background: #34495e;
+    color: #fff;
+}
+.menu a.active {
+    background: #7e47b8;
+    color: #fff;
+    font-weight: 500;
+}
+.menu a i {
+    margin-right: 12px;
+    width: 18px;
+    text-align: center;
+    font-size: 1rem;
+}
+
+.logout {
+    margin-top: auto;
+    color: #bdc3c7;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    width: 100%;
+    padding: 10px 12px;
+    border-radius: 6px;
+    font-size: 0.9rem;
+    transition: background-color 0.2s, color 0.2s;
+}
+.logout i { margin-right: 12px; }
+.logout:hover {
+    background-color: #c0392b;
+    color: #fff;
+}
+
+/* ==========================================================================
+   Main Content Area
+   ========================================================================== */
+.main {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    overflow: auto;
+    min-width: 0;
+    padding: 0 15px 15px 0;
+}
+.main::-webkit-scrollbar  {
+    display: none;
+}
+
+.main h2.page-title {
+    font-size: 1.5rem;
+    color: #2c3e50;
+    margin-bottom: 15px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid #dfe3e8;
+    flex-shrink: 0;
+}
+
+/* ==========================================================================
+   Dashboard Layout (Grid)
+   ========================================================================== */
+.main-dashboard {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    grid-template-rows: auto 1fr;
+    gap: 15px;
+    flex-grow: 1;
+    overflow: hidden;
+}
+.main-dashboard .page-title { grid-column: 1 / -1; flex-shrink: 0; }
+.main-dashboard .todo { grid-row: 2 / span 2; }
+.main-dashboard .status { grid-row: 2 / span 1; }
+.main-dashboard .completed { grid-row: 3 / span 1; }
+
+.widget, .form-container, .profile-card, .table-container, .filters-container {
+    background: #fff;
+    border-radius: 8px;
+    padding: 18px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.07);
+    margin-bottom: 15px;
+}
+.widget:last-child, .form-container:last-child, .profile-card:last-child, .table-container:last-child, .filters-container:last-child {
+    margin-bottom: 0;
+    height: auto;
+}
+
+.widget h3 {
+    font-size: 1.15rem;
+    margin-bottom: 12px;
+    color: #34495e;
+    padding-bottom: 8px;
+    border-bottom: 1px solid #f0f0f0;
+}
+.widget h3 span { font-size: 0.85rem; color: #777; }
+
+#todo-list, #completed-list, #managementTaskList, #historyTaskList {
+    padding-right: 2px;
+}
+.widget.scrollable-list > div[id$="-list"] {
+    max-height: 300px;
+    overflow-y: auto;
+}
+.widget.scrollable-list > div[id$="-list"]::-webkit-scrollbar {
+    display: none;
+}
+
+.task-item-card {
+    background-color: #f9fafb;
+    border: 1px solid #e7eaec;
+    border-radius: 6px;
+    padding: 12px;
+    margin-bottom: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: box-shadow 0.2s ease, border-color 0.2s ease, border-left-color 0.2s ease, background-color 0.2s ease;
+    font-size: 0.85rem;
+}
+.task-item-card:hover {
+    border-color: #d1d5db;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.06);
+}
+.task-item-card .task-details { flex-grow: 1; margin-right: 10px;}
+.task-item-card .task-details strong {
+    font-size: 0.95rem;
+    color: #1f2937;
+    display: block;
+    margin-bottom: 2px;
+}
+.task-details a.task-title-link {
+    text-decoration: none;
+    color: inherit;
+}
+.task-details a.task-title-link:hover strong {
+    color: #7e47b8;
+}
+.task-item-card .task-details .description {
+    font-size: 0.8rem;
+    color: #4b5563;
+    margin-bottom: 4px;
+    word-break: break-word;
+}
+.task-item-card .task-details .meta-info {
+    font-size: 0.75rem;
+    color: #6b7280;
+}
+.task-item-card.completed .task-details strong {
+    color: #868e99;
+    font-weight: normal;
+}
+.task-item-card.completed .task-details .description,
+.task-item-card.completed .task-details .meta-info {
+    color: #9ca3af;
+}
+.task-item-card .task-actions { display: flex; align-items: center; flex-shrink: 0; }
+.task-item-card .task-actions select,
+.task-item-card .task-actions select.task-status-select {
+    padding: 6px 8px;
+    border-radius: 5px;
+    border: 1px solid #d1d5db;
+    font-size: 0.8rem;
+    background-color: #fff;
+    margin-right: 8px;
+    min-width: 100px;
+    cursor: pointer;
+}
+.task-item-card .task-actions button, .task-item-card .task-actions a {
+    background: transparent;
+    color: #6b7280;
+    border: none;
+    padding: 5px;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: color 0.2s, background-color 0.2s;
+    font-size: 0.9rem;
+    margin-left: 4px;
+    width: 28px; height: 28px;
+    display: inline-flex; align-items: center; justify-content: center;
+    text-decoration: none;
+}
+.task-item-card .task-actions button:hover, .task-item-card .task-actions a:hover {
+    background-color: #e5e7eb;
+}
+.task-item-card .task-actions .edit-btn:hover, .task-item-card .task-actions .reopen-btn:hover { color: #2563eb; }
+.task-item-card .task-actions .delete-btn:hover { color: #dc2626; }
+
+.progress-container { display: flex; justify-content: space-around; margin-top: 15px; }
+.progress { text-align: center; }
+.progress-circle {
+    width: 65px; height: 65px;
+    background: conic-gradient(#4caf50 0% var(--progress), #e7eaec var(--progress) 100%);
+    border-radius: 50%; display: flex; align-items: center; justify-content: center; position: relative; margin: 0 auto 8px;
+}
+.progress-circle.in-progress { background: conic-gradient(#2196f3 0% var(--progress), #e7eaec var(--progress) 100%); }
+.progress-circle.not-started { background: conic-gradient(#f44336 0% var(--progress), #e7eaec var(--progress) 100%); }
+.progress-circle::before {
+    content: attr(data-progress) '%';
+    position: absolute; width: 48px; height: 48px;
+    background: #fff; border-radius: 50%; display: flex; align-items: center; justify-content: center;
+    font-size: 0.85rem; font-weight: 600; color: #333;
+}
+.progress p { font-size: 0.8rem; color: #4b5563; }
+
+/* ==========================================================================
+   Pop-up Notifikasi & Kalender
+   ========================================================================== */
+#notification-popup, #calendar-popup {
+    position: fixed;
+    top: 60px;
+    background: #fff; border: 1px solid #ddd; border-radius: 8px; padding: 15px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1); z-index: 1001;
+    opacity: 0; transform: translateY(-10px) scale(0.95);
+    transition: opacity 0.2s ease, transform 0.2s ease, visibility 0s 0.2s;
+    display: none;
+}
+#notification-popup { right: 20px; width: 300px; }
+#calendar-popup { right: 65px; }
+
+#notification-popup.show, #calendar-popup.show {
+    opacity: 1; transform: translateY(0) scale(1);
+    display: block;
+    transition: opacity 0.2s ease, transform 0.2s ease, visibility 0s 0s;
+}
+
+#notification-popup h4 {
+    margin-top: 0; font-size: 1rem; border-bottom: 1px solid #eee;
+    padding-bottom: 8px; margin-bottom: 10px; color: #333;
+}
+#notification-list { list-style: none; padding: 0; max-height: 250px; overflow-y: auto; }
+#notification-list::-webkit-scrollbar { display: none; }
+#notification-list li {
+    padding: 8px 5px; border-bottom: 1px solid #f0f0f0; font-size: 0.85rem; line-height: 1.4;
+    display: flex; justify-content: space-between; align-items: center; text-align: left;
+}
+#notification-list li:last-child { border-bottom: none; }
+.notif-time { font-size: 0.75rem; color: #777; white-space: nowrap; margin-left: 10px; }
+
+/* ==========================================================================
+   General Form Styles
+   ========================================================================== */
+.form-group { margin-bottom: 15px; }
+.form-group label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: 500;
+    font-size: 0.85rem;
+}
+.form-group input[type="text"],
+.form-group input[type="email"],
+.form-group input[type="password"],
+.form-group input[type="date"],
+.form-group textarea,
+.form-group select {
+    width: 100%;
+    padding: 9px 12px;
+    border: 1px solid #d1d5db;
+    border-radius: 6px;
+    font-size: 0.9rem;
+    background-color: #f9fafb;
+    color: #1f2937;
+}
+.form-group input:focus, .form-group textarea:focus, .form-group select:focus {
+    border-color: #7e47b8;
+    box-shadow: 0 0 0 2.5px rgba(126, 71, 184, 0.2);
+    outline: none;
+    background-color: #fff;
+}
+.form-group textarea { min-height: 90px; resize: vertical; }
+
+/* ==========================================================================
+   Tombol (Buttons)
+   ========================================================================== */
+.btn {
+    padding: 9px 18px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 0.9rem;
+    font-weight: 500;
+    transition: background-color 0.2s ease, box-shadow 0.2s ease, transform 0.1s ease;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+}
+.btn:active { transform: translateY(1px); }
+
+.btn-primary { background-color: #7e47b8; color: white; }
+.btn-primary:hover { background-color: #6a3aa2; box-shadow: 0 2px 4px rgba(0,0,0,0.1); }
+.btn-secondary { background-color: #6c757d; color: white; }
+.btn-secondary:hover { background-color: #545b62; box-shadow: 0 2px 4px rgba(0,0,0,0.1); }
+.btn-danger { background-color: #e74c3c; color: white; }
+.btn-danger:hover { background-color: #c0392b; box-shadow: 0 2px 4px rgba(0,0,0,0.1); }
+.btn-full-width { display: block; width: 100%; }
+
+.form-actions {
+    margin-top: 20px;
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+}
+
+/* ==========================================================================
+   Filters Container
+   ========================================================================== */
+.filters-container {
+    background: #fff;
+    border-radius: 8px;
+    padding: 12px 15px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.07);
+    margin-bottom: 15px;
+    display: flex;
+    gap: 10px;
+    align-items: flex-end;
+    flex-wrap: wrap;
+    flex-shrink: 0;
+}
+.filters-container .form-group {
+    margin-bottom: 0;
+    flex-grow: 1;
+    min-width: 150px;
+}
+.filters-container label {
+    font-size: 0.8rem;
+    margin-bottom: 3px;
+}
+.filters-container select,
+.filters-container input[type="text"] {
+    padding: 7px 10px;
+    font-size: 0.85rem;
+    height: 34px;
+    border: 1px solid #d1d5db;
+    border-radius: 6px;
+    width: 100%;
+}
+.filters-container .btn-filter-group {
+    display: flex;
+    gap: 8px;
+    align-items: flex-end;
+    margin-left: auto;
+}
+.filters-container .btn {
+    padding: 7px 15px;
+    font-size: 0.85rem;
+    height: 34px;
+    min-width: 100px;
+    white-space: nowrap;
+}
+
+/* ==========================================================================
+   Pesan "Tidak Ada Tugas"
+   ========================================================================== */
+.no-tasks-message {
+    text-align:center; padding: 25px; color: #6b7280; font-style: italic;
+    background-color: #f9fafb; border-radius: 6px; border: 1px dashed #e5e7eb;
+}
+
+/* ==========================================================================
+   Halaman Profil
+   ========================================================================== */
+.main .profile-card {
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(5px);
+    padding: 30px 35px;
+    border-radius: 10px;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+    width: 100%;
+    max-width: 380px;
+    text-align: center;
+    position: relative;
+    z-index: 2;
+    margin: 20px auto;
+}
+.profile-card img#profileImageMain {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    margin-bottom: 15px;
+    border: 3px solid #7e47b8;
+    object-fit: cover;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+.profile-card h2#profileName { color: #333; margin-bottom: 5px; font-size: 1.6rem; }
+.profile-card p#profileEmail { color: #666; margin-bottom: 25px; font-size: 1rem; }
+.profile-actions {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin-top: 15px;
+}
+
+.main .profile-page-container {
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+    padding: 10px;
+}
+
+.main .profile-card-display {
+    background: #ffffff;
+    border-radius: 12px;
+    padding: 25px 30px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+    text-align: center;
+    flex-basis: 350px;
+    flex-shrink: 0;
+    height: auto;
+}
+.profile-card-display img#profileImageMain {
+    width: 130px;
+    height: 130px;
+    border-radius: 50%;
+    margin-bottom: 18px;
+    border: 4px solid #7e47b8;
+    object-fit: cover;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+.profile-card-display h2#profileName {
+    color: #2c3e50;
+    margin-bottom: 6px;
+    font-size: 1.7rem;
+    font-weight: 600;
+}
+.profile-card-display p#profileEmail {
+    color: #555;
+    margin-bottom: 0;
+    font-size: 1rem;
+}
+
+.main .profile-actions-and-info {
+    background: #ffffff;
+    border-radius: 12px;
+    padding: 25px 30px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+    flex-grow: 1;
+}
+.profile-actions-and-info h3.section-title {
+    font-size: 1.2rem;
+    color: #34495e;
+    margin-bottom: 20px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #f0f0f0;
+}
+
+.profile-actions a.btn {
+    width: 100%;
+    text-align: center;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    font-size: 0.95rem;
+}
+.profile-actions a.btn i {
+    margin-right: 8px;
+}
+
+/* ==========================================================================
+   Pengaturan Layout Spesifik .main dan Widget di Dashboard
+   ========================================================================== */
+.main-dashboard .widget {
+    background: #fff;
+    border-radius: 8px;
+    padding: 18px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.07);
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+}
+.main-dashboard .widget h3 {
+    font-size: 1.15rem;
+    margin-bottom: 12px;
+    color: #34495e;
+    padding-bottom: 8px;
+    border-bottom: 1px solid #f0f0f0;
+    flex-shrink: 0;
+}
+.main-dashboard .widget > div[id$="-list"] {
+    flex-grow: 1;
+    overflow-y: auto;
+    padding-right: 5px;
+}
+.main-dashboard .widget > div[id$="-list"]::-webkit-scrollbar  {
+    display: none;
+}
+.main-dashboard .widget.status .progress-container{
+    flex-grow: 1;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    overflow-y: visible;
+}
+
+/* ==========================================================================
+   Table Container (untuk halaman Manajemen & Riwayat)
+   ========================================================================== */
+.table-container {
+    background: #fff;
+    border-radius: 8px;
+    padding: 18px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.07);
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+}
+.table-container #managementTaskList,
+.table-container #historyTaskList {
+    flex-grow: 1;
+    overflow-y: auto;
+    padding-right: 8px;
+}
+
+/* Menyembunyikan scrollbar di Webkit (Chrome, Edge, Safari) */
+.table-container #managementTaskList::-webkit-scrollbar,
+.table-container #historyTaskList::-webkit-scrollbar {
+    display: none;
+}
+
+/* ==========================================================================
+   Dashboard Layout Baru (Grid 4 Kotak / 2 Kolom) dan Styling Terkait
+   ========================================================================== */
+html {
+    font-size: 14px;
+}
+
+.dashboard-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: auto 1fr;
+    gap: 15px;
+    flex-grow: 1;
+    overflow: hidden;
+    height: calc(100% - 40px - 15px);
+    align-items: stretch;
+}
+
+.dashboard-grid .page-title-container {
+    grid-column: 1 / -1;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 0;
+    flex-shrink: 0;
+    height: 40px;
+    border-bottom: 1px solid #dfe3e8;
+}
+.dashboard-grid .page-title-container .page-title {
+    margin-bottom: 0;
+    border-bottom: none;
+}
+
+.dashboard-left-column,
+.dashboard-right-column {
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+}
+
+.dashboard-grid .widget h3 {
+    font-size: 1.05rem;
+    margin-bottom: 8px;
+    color: #34495e;
+    padding-bottom: 8px;
+    border-bottom: 1px solid #f0f0f0;
+    flex-shrink: 0;
+}
+
+.dashboard-grid .widget .widget-content-area {
+    flex-grow: 1;
+    overflow-y: auto;
+    position: relative;
+    padding: 5px;
+    padding-block-end: 10px;
+}
+
+.dashboard-grid .widget .widget-content-area::-webkit-scrollbar {
+    display: none;
+}
+
+.dashboard-grid .widget .chart-container canvas {
+    max-height: 180px;
+    width: 100% !important;
+    height: auto !important;
+}
+
+.dashboard-right-column .widget {
+    height: 100%;
+}
+.dashboard-right-column #dashboard-active-tasks-list {
+    overflow-y: auto;
+    padding-right: 8px;
+    flex-grow: 1;
+    height: 68vh;
+}
+
+.dashboard-right-column #dashboard-active-tasks-list::-webkit-scrollbar {
+    display: none;
+}
+
+.status-progress-container {
+    display: flex;
+    justify-content: space-around;
+}
+.progress-item {
+    text-align: center;
+    flex: 1;
+}
+.progress-circle-display,
+.progress-circle {
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    margin: 0 auto 8px;
+    background: conic-gradient(
+        var(--progress-color, #e7eaec) 0% var(--progress-percent, 0%),
+        #e7eaec var(--progress-percent, 0%) 100%
+    );
+}
+.progress-circle-display::before,
+.progress-circle::before {
+    content: attr(data-progress) '%';
+    position: absolute;
+    width: calc(100% - 16px);
+    height: calc(100% - 16px);
+    background: #fff;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: #333;
+    z-index: 1;
+}
+.progress-item p {
+    font-size: 0.8rem;
+    color: #4b5563;
+    margin-top: 5px;
+}
+
+/* ==========================================================================
+   Filter Performa Dashboard & Filter Umum (Versi Minimalis)
+   ========================================================================== */
+.performance-filter-container,
+.filters-container
+{
+    background: #fff;
+    border-radius: 8px;
+    padding: 10px 15px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.07);
+    margin-bottom: 15px;
+    display: flex;
+    gap: 10px;
+    align-items: flex-end;
+    flex-wrap: wrap;
+    flex-shrink: 0;
+    align-items: center;
+}
+.performance-filter-container {
+    margin-bottom: 0;
+    padding: 0;
+    box-shadow: none;
+    background: transparent;
+}
+
+.performance-filter-container .form-group,
+.filters-container .form-group {
+    margin-bottom: 0;
+    flex-grow: 0;
+    min-width: 150px;
+}
+.performance-filter-container label,
+.filters-container label {
+    font-size: 0.8rem;
+    margin-bottom: 4px;
+    display: block;
+}
+.performance-filter-container select,
+.performance-filter-container input[type="text"],
+.filters-container select,
+.filters-container input[type="text"] {
+    padding: 7px 10px;
+    font-size: 0.85rem;
+    height: 36px;
+    border: 1px solid #d1d5db;
+    border-radius: 6px;
+    width: 100%;
+}
+
+.filter-preset-buttons {
+    display: flex;
+    gap: 5px;
+    align-items: flex-end;
+    margin-bottom: 0;
+}
+.filter-preset-buttons .btn {
+    padding: 7px 10px;
+    font-size: 0.8rem;
+    height: 36px;
+    background-color: #f0f3f7;
+    color: #555;
+    border: 1px solid #dfe3e8;
+}
+.filter-preset-buttons .btn.active,
+.filter-preset-buttons .btn:hover {
+    background-color: #7e47b8;
+    color: white;
+    border-color: #7e47b8;
+}
+
+.filter-action-buttons {
+    display: flex;
+    gap: 8px;
+    align-items: flex-end;
+    margin-left: auto;
+}
+.filter-action-buttons .btn {
+    padding: 7px 15px;
+    font-size: 0.85rem;
+    height: 36px;
+    min-width: 80px;
+}
+
+.performance-filter-form {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+    margin-bottom: 10px;
+    flex-wrap: nowrap;
+    padding: 5px 0;
+    justify-content: space-between;
+}
+.performance-filter-form label {
+    font-size: 0.85rem;
+    white-space: nowrap;
+    margin-right: 5px;
+    color: #555;
+}
+.performance-filter-form .filter-preset-buttons {
+    display: flex;
+    gap: 5px;
+}
+.performance-filter-form .filter-preset-buttons .btn {
+    padding: 5px 10px;
+    font-size: 0.75rem;
+    height: 30px;
+    background-color: #f0f3f7;
+    color: #555;
+    border: 1px solid #dfe3e8;
+}
+.performance-filter-form .filter-preset-buttons .btn.active,
+.performance-filter-form .filter-preset-buttons .btn:hover {
+    background-color: #7e47b8;
+    color: white;
+    border-color: #7e47b8;
+}
+.performance-filter-form input[type="text"] {
+    padding: 5px 8px;
+    font-size: 0.8rem;
+    height: 30px;
+    border: 1px solid #d1d5db;
+    border-radius: 4px;
+    width: 150px;
+    margin-left: 5px;
+}
+.performance-filter-form .btn-apply-perf {
+    padding: 5px 12px;
+    font-size: 0.8rem;
+    height: 30px;
+    margin-left: 5px;
+}
+
+/* ==========================================================================
+   Responsive Design
+   ========================================================================== */
+@media (max-width: 992px) {
+    .main-dashboard {
+        grid-template-columns: 1fr;
+        grid-template-rows: auto auto auto auto;
+    }
+    .main-dashboard .todo { grid-row: 2; }
+    .main-dashboard .status { grid-row: 3; }
+    .main-dashboard .completed { grid-row: 4; }
+
+    .dashboard-grid {
+        grid-template-columns: 1fr;
+        height: auto;
+    }
+    .performance-filter-container {
+        flex-direction: column;
+        align-items: stretch;
+    }
+    .performance-filter-container .form-group,
+    .performance-filter-container .filter-preset-buttons,
+    .performance-filter-container .filter-action-buttons {
+        width: 100%;
+        margin-left: 0;
+    }
+
+    .sidebar {
+    }
+    .search-bar { max-width: 300px; margin: 0 15px; }
+}
+
+@media (max-width: 768px) {
+    html { font-size: 13.5px; }
+
+    .header {
+        height: auto;
+        padding: 8px 15px;
+        flex-wrap: wrap;
+    }
+    .header-left { order: 1; width: auto; margin-bottom: 8px; }
+    .header-right { order: 2; margin-left: auto; margin-bottom: 8px; }
+    .search-bar { order: 3; width: 100%; margin: 0 0 5px 0; max-width: none; }
+
+    .content {
+        flex-direction: column;
+        padding: 10px;
+        gap: 10px;
+        max-height: none;
+        overflow: visible;
+        height: auto;
+    }
+
+    .sidebar {
+        width: auto;
+        position: static;
+        height: auto;
+        flex-direction: row;
+        justify-content: space-between;
+        padding: 10px;
+        overflow-x: hidden;
+        white-space: nowrap;
+        border-radius: 8px;
+        margin-bottom:10px;
+    }
+    .sidebar .menu { display: flex; gap: 5px; width: auto; justify-content: center;}
+    .sidebar .menu a { margin-bottom: 0; padding: 8px 10px; font-size: 0.85rem; }
+    .sidebar .logout { display: flex; width: 7vh;}
+    .sidebar .menu a span { display: none;}
+    .sidebar a span { display: none;}
+
+    .main {
+        padding: 0;
+        overflow-y: visible;
+    }
+    .main h2.page-title { font-size: 1.3rem; margin-bottom: 10px; }
+
+    .widget.scrollable-list > div[id$="-list"],
+    #todo-list, #completed-list, #managementTaskList, #historyTaskList {
+        max-height: 250px;
+    }
+
+    .filters-container {
+        flex-direction: column;
+        align-items: stretch;
+    }
+    .filters-container .form-group,
+    .filters-container .filter-preset-buttons,
+    .filters-container .filter-action-buttons {
+        width: 100%;
+        margin-left: 0;
+    }
+    .filter-action-buttons {
+        flex-direction: column;
+    }
+    .filter-action-buttons .btn {
+        width: 100%;
+    }
+
+    .main .profile-page-container {
+        flex-direction: column;
+    }
+    .profile-actions {
+        flex-direction: column;
+        gap: 10px;
+    }
+    .profile-actions a.btn {
+        width: 100%;
+    }
+
+    /* Tambahkan kode ini di dalam blok @media (max-width: 768px) */
+
+    /* ========================================================================== */
+/* ==========    PERBAIKAN FINAL V2: FILTER DIAGRAM MOBILE     ========== */
+/* ========================================================================== */
+    .performance-filter-form,
+    .report-performance-filter {
+        display: flex;       /* Pastikan display tetap flex */
+        flex-wrap: wrap;     /* WAJIB: Izinkan elemen untuk turun baris, mengalahkan `nowrap` */
+        gap: 12px;           /* Beri jarak yang konsisten */
+        align-items: center; 
+    }
+
+    /* Biarkan label dan tombol preset mengalir secara alami */
+    .performance-filter-form label,
+    .report-performance-filter label,
+    .performance-filter-form .filter-preset-buttons,
+    .report-performance-filter .filter-preset-buttons {
+        flex-shrink: 0; 
+    }
+
+    /* Buat input tanggal fleksibel untuk mengisi sisa ruang */
+    .performance-filter-form input[type="text"],
+    .report-performance-filter input[type="text"] {
+        flex-grow: 1;     /* Ambil sisa ruang di baris atas */
+        min-width: 140px; /* Beri lebar minimum */
+        margin-left: 0;
+    }
+
+    /* === TRIK UTAMA UNTUK MEMINDAHKAN TOMBOL AKSI === */
+    /* Paksa grup tombol aksi ("Lihat" / "Filter") untuk mengambil lebar penuh,
+    sehingga otomatis turun ke baris baru di bawahnya. */
+    .performance-filter-form .filter-action-buttons,
+    .report-performance-filter .filter-action-buttons {
+        flex-basis: 100%;          /* Ini adalah perintah untuk mengambil 100% lebar */
+        justify-content: flex-end; /* Posisikan tombol di sisi kanan */
+        margin-left: auto;         /* Reset margin-left otomatis */
+    }
+}
+
+/* ==========================================================================
+   Popup Notifikasi Styling Lanjutan
+   ========================================================================== */
+#notification-popup {
+    max-height: 400px;
+}
+
+#notification-popup .notification-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 15px;
+    border-bottom: 1px solid #eee;
+    position: sticky;
+    top: 0;
+    background-color: white;
+    z-index: 1;
+}
+
+#notification-popup .notification-header h4 {
+    margin: 0;
+    font-size: 1.1em;
+}
+
+.btn-clear-notif {
+    background-color: #e74c3c;
+    color: white;
+    border: none;
+    padding: 6px 10px;
+    font-size: 0.8em;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+.btn-clear-notif:hover {
+    background-color: #c0392b;
+}
+
+#notification-popup ul#notification-list {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    overflow-y: auto;
+    height: 50vh;
+}
+#notification-popup ul#notification-list::-webkit-scrollbar  {
+    display: none;
+}
+
+#notification-popup ul#notification-list li {
+    padding: 10px 15px;
+    border-bottom: 1px solid #f0f0f0;
+    font-size: 0.9em;
+    display: flex;
+    flex-direction: column;
+}
+#notification-popup ul#notification-list li:last-child {
+    border-bottom: none;
+}
+
+#notification-popup ul#notification-list li.no-notifications {
+    text-align: center;
+    color: #777;
+    padding: 20px 15px;
+}
+
+#notification-popup .notif-time {
+    font-size: 0.8em;
+    color: #888;
+    margin-top: 4px;
+}
+
+#notification-popup .notif-success {
+    border-left: 3px solid #2ecc71;
+    background-color: #f2fdf5;
+}
+
+#notification-popup .notif-error {
+    border-left: 3px solid #e74c3c;
+    background-color: #fef6f5;
+}
+#notification-popup .notif-info {
+    border-left: 3px solid #3498db;
+    background-color: #f5faff;
+}
+
+.header-right .fa-bell.has-notif {
+    color: #e74c3c;
+    position: relative;
+}
+.header-right .fa-bell.has-notif::after {
+    content: '';
+    position: absolute;
+    top: 0px;
+    right: 0px;
+    width: 8px;
+    height: 8px;
+    background-color: red;
+    border-radius: 50%;
+    border: 1px solid white;
+}
+
+/* ==========================================================================
+   MODIFIKASI TAMBAHAN - REVISI PROFIL, TEMA, NOTIF, STATUS, SIDEBAR
+   ========================================================================== */
+
+/* ==========================================================================
+   Tema Gelap (Dark Theme)
+   ========================================================================== */
+html.dark-theme-active body {
+    background-color: #121212;
+    color: #e0e0e0;
+    overflow:auto;
+}
+html.dark-theme-active .header {
+    background-color: #1e1e1e;
+    box-shadow: 0 1px 3px rgba(255, 255, 255, 0.06);
+}
+html.dark-theme-active .header-left h2,
+html.dark-theme-active .header-left h2.app-title-toggle,
+html.dark-theme-active .search-bar i,
+html.dark-theme-active .search-bar button i.fa-search {
+    color: #bb86fc;
+}
+html.dark-theme-active .header-right i.fas { color: #bdbdbd; }
+html.dark-theme-active .header-right i.fas:hover { color: #bb86fc; background-color: rgba(187, 134, 252, 0.1); }
+html.dark-theme-active .date-container p { color: #bdbdbd; }
+html.dark-theme-active .date-container span { color: #bb86fc; }
+
+html.dark-theme-active .search-bar { background: #2c2c2c; border-color: #444; }
+html.dark-theme-active .search-bar input { color: #e0e0e0; }
+html.dark-theme-active .search-bar input::placeholder { color: #aaa; }
+
+html.dark-theme-active .sidebar { background: #1e1e1e; color: #e0e0e0; }
+html.dark-theme-active .menu a { color: #bdbdbd; }
+html.dark-theme-active .menu a:hover { background: #333; color: #fff; }
+html.dark-theme-active .menu a.active { background: #bb86fc; color: #121212; }
+html.dark-theme-active .logout { color: #bdbdbd; }
+html.dark-theme-active .logout:hover { background-color: #cf6679; color: #121212; }
+
+html.dark-theme-active .main h2.page-title { color: #f5f5f5; border-bottom-color: #444; }
+
+html.dark-theme-active .widget,
+html.dark-theme-active .form-container,
+html.dark-theme-active .profile-info-card,
+html.dark-theme-active .profile-actions-card,
+html.dark-theme-active .table-container,
+html.dark-theme-active .filters-container {
+    background: #2c2c2c;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.3);
+    border: 1px solid #444;
+}
+html.dark-theme-active .widget h3,
+html.dark-theme-active .profile-actions-card h3.card-title,
+html.dark-theme-active .dashboard-grid .widget h3 {
+    color: #f5f5f5;
+    border-bottom-color: #444;
+}
+html.dark-theme-active .widget.status .progress-container p,
+html.dark-theme-active .progress-item p { color: #bdbdbd; }
+html.dark-theme-active .progress-circle-display::before,
+html.dark-theme-active .progress-circle::before { background: #2c2c2c; color: #e0e0e0; }
+
+
+html.dark-theme-active .task-item-card { background-color: #373737; border-color: #555; }
+html.dark-theme-active .task-item-card:hover { border-color: #777; box-shadow: 0 2px 4px rgba(0,0,0,0.2); }
+html.dark-theme-active .task-item-card .task-details strong,
+html.dark-theme-active .task-details a.task-title-link strong { color: #f5f5f5; }
+html.dark-theme-active .task-details a.task-title-link:hover strong { color: #bb86fc; }
+html.dark-theme-active .task-item-card .task-details .description { color: #ccc; }
+html.dark-theme-active .task-item-card .task-details .meta-info { color: #bbb; }
+html.dark-theme-active .task-item-card .task-actions select,
+html.dark-theme-active .task-item-card .task-actions select.task-status-select { background-color: #373737; border-color: #555; color: #e0e0e0; }
+html.dark-theme-active .task-item-card .task-actions button,
+html.dark-theme-active .task-item-card .task-actions a { color: #bdbdbd; }
+html.dark-theme-active .task-item-card .task-actions button:hover,
+html.dark-theme-active .task-item-card .task-actions a:hover { background-color: #4f4f4f; }
+html.dark-theme-active .task-item-card .task-actions .edit-btn:hover,
+html.dark-theme-active .task-item-card .task-actions .reopen-btn:hover { color: #90caf9; }
+html.dark-theme-active .task-item-card .task-actions .delete-btn:hover { color: #ef9a9a; }
+
+/* ==========================================================================
+   Warna Status Card - Light Mode
+   ========================================================================== */
+.task-item-card.status-not-started {
+    background-color: #f9fafb;
+    border-left: 4px solid #b0bec5;
+}
+.task-item-card.status-in-progress {
+    background-color: #e3f2fd;
+    border-left: 4px solid #2196f3;
+}
+.task-item-card.status-completed-history {
+    background-color: #e8f5e9;
+    border-left: 4px solid #4caf50;
+}
+.task-item-card.status-overdue-uncompleted-history {
+    background-color: #fff8e1;
+    border-left: 4px solid #ffb300;
+}
+
+/* ==========================================================================
+   Warna Status Card - Dark Mode
+   ========================================================================== */
+html.dark-theme-active .task-item-card.status-not-started {
+    background-color: #373737;
+    border-left-color: #78909c;
+}
+html.dark-theme-active .task-item-card.status-in-progress {
+    background-color: #2a3b4d;
+    border-left-color: #64b5f6;
+}
+html.dark-theme-active .task-item-card.status-completed-history {
+    background-color: #2e4b35;
+    border-left-color: #81c784;
+}
+html.dark-theme-active .task-item-card.status-overdue-uncompleted-history {
+    background-color: #4d4021;
+    border-left-color: #ffca28;
+}
+
+.task-item-card.status-completed-history .task-details strong,
+html.dark-theme-active .task-item-card.status-completed-history .task-details strong {
+}
+
+.main-content-manajemen .task-item-card[data-task-id] { cursor: pointer; }
+.main-content-manajemen .task-item-card[data-task-id]:hover { box-shadow: 0 4px 10px rgba(0,0,0,0.1); }
+html.dark-theme-active .main-content-manajemen .task-item-card[data-task-id]:hover { box-shadow: 0 4px 10px rgba(255,255,255,0.1); }
+
+
+html.dark-theme-active .form-group label { color: #ccc; }
+html.dark-theme-active .form-group input[type="text"],
+html.dark-theme-active .form-group input[type="email"],
+html.dark-theme-active .form-group input[type="password"],
+html.dark-theme-active .form-group input[type="date"],
+html.dark-theme-active .form-group textarea,
+html.dark-theme-active .form-group select {
+    background-color: #373737; border-color: #555; color: #e0e0e0;
+}
+html.dark-theme-active .form-group input:focus,
+html.dark-theme-active .form-group textarea:focus,
+html.dark-theme-active .form-group select:focus {
+    border-color: #bb86fc; box-shadow: 0 0 0 2.5px rgba(187, 134, 252, 0.3); background-color: #3c3c3c;
+}
+
+html.dark-theme-active .btn-primary { background-color: #bb86fc; color: #121212; }
+html.dark-theme-active .btn-primary:hover { background-color: #a06fec; }
+html.dark-theme-active .btn-secondary { background-color: #555; color: #e0e0e0; }
+html.dark-theme-active .btn-secondary:hover { background-color: #666; }
+html.dark-theme-active .btn-danger { background-color: #cf6679; color: #121212; }
+html.dark-theme-active .btn-danger:hover { background-color: #b04c5f; }
+
+html.dark-theme-active .no-tasks-message { color: #aaa; background-color: #373737; border-color: #555; }
+
+/* ==========================================================================
+   Dark Theme Popups (Notifikasi & Kalender)
+   ========================================================================== */
+html.dark-theme-active #notification-popup,
+html.dark-theme-active #calendar-popup {
+    background: #2c2c2c;
+    border: 1px solid #444;
+    color: #e0e0e0;
+}
+html.dark-theme-active #notification-popup .notification-header,
+html.dark-theme-active #calendar-popup .calendar-header { /* Assuming .calendar-header for consistency */
+    background-color: #2c2c2c;
+    border-bottom-color: #444;
+}
+html.dark-theme-active #notification-popup .notification-header h4,
+html.dark-theme-active #calendar-popup .calendar-header h4 { /* Assuming h4 in calendar popup header */
+    color: #f5f5f5;
+}
+html.dark-theme-active #notification-popup ul#notification-list li {
+    border-bottom-color: #444;
+    /* Text color inherited from #notification-popup */
+}
+html.dark-theme-active #notification-popup .notif-time,
+html.dark-theme-active #calendar-popup .notif-time { /* If calendar uses .notif-time */
+    color: #aaa;
+}
+html.dark-theme-active .btn-clear-notif {
+    background-color: #cf6679;
+    color: #121212;
+}
+html.dark-theme-active .btn-clear-notif:hover {
+    background-color: #b04c5f;
+}
+
+/* ==========================================================================
+   Dark Theme Jenis Notifikasi (Revisi Warna untuk Kejelasan)
+   ========================================================================== */
+html.dark-theme-active #notification-popup .notif-success {
+    border-left-color: #66bb6a; /* Material Green 400 */
+    background-color: rgba(102, 187, 106, 0.15);
+}
+html.dark-theme-active #notification-popup .notif-error {
+    border-left-color: #ef5350; /* Material Red 400 */
+    background-color: rgba(239, 83, 80, 0.15);
+}
+html.dark-theme-active #notification-popup .notif-info {
+    border-left-color: #42a5f5; /* Material Blue 400 */
+    background-color: rgba(66, 165, 245, 0.15);
+}
+html.dark-theme-active #notification-popup .notif-deadline_soon {
+    border-left-color: #ffc107; /* Amber 500 (lebih terang dari #ffa000) */
+    background-color: rgba(255, 193, 7, 0.25); /* Latar belakang kuning lembut transparan */
+}
+html.dark-theme-active #notification-popup .notif-deadline_soon .message-content strong {
+    color: #fff59d; /* Kuning sangat terang untuk kontras */
+}
+html.dark-theme-active #notification-popup .notif-deadline_soon .notif-time {
+    color: #ffe082; /* Kuning terang untuk waktu */
+}
+html.dark-theme-active #notification-popup ul#notification-list li.no-notifications {
+    color: #aaa; /* Warna teks untuk pesan 'tidak ada notifikasi' */
+}
+
+
+/* ==========================================================================
+   Dark Theme Kalender (Contoh Styling Internal)
+   ========================================================================== */
+html.dark-theme-active #calendar-popup .calendar-day-names span { /* Misal: Sen, Sel, Rab */
+    color: #bb86fc; /* Warna aksen */
+    font-weight: 500;
+}
+html.dark-theme-active #calendar-popup .calendar-date { /* Untuk setiap tanggal */
+    color: #e0e0e0;
+    cursor: pointer;
+}
+html.dark-theme-active #calendar-popup .calendar-date:hover {
+    background-color: #3a3a3a;
+    border-radius: 4px;
+}
+html.dark-theme-active #calendar-popup .calendar-date.today {
+    background-color: #bb86fc;
+    color: #121212;
+    border-radius: 50%;
+    font-weight: bold;
+}
+html.dark-theme-active #calendar-popup .calendar-date.selected {
+    background-color: #7e47b8; /* Warna primer lebih gelap untuk 'selected' */
+    color: #ffffff;
+    border-radius: 50%;
+}
+html.dark-theme-active #calendar-popup .calendar-date.other-month { /* Tanggal dari bulan lain */
+    color: #757575; /* Redup */
+    cursor: default;
+}
+html.dark-theme-active #calendar-popup .calendar-navigation button { /* Tombol navigasi bulan (prev/next) */
+    color: #bb86fc;
+    background: transparent;
+    border: none;
+}
+html.dark-theme-active #calendar-popup .calendar-navigation button:hover {
+    background-color: rgba(187, 134, 252, 0.1);
+}
+
+
+/* ==========================================================================
+   Styling Halaman Profil (Dark Theme sudah diintegrasikan di atas)
+   ========================================================================== */
+.profile-page-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    align-items: flex-start;
+}
+
+.profile-info-card {
+    flex: 1 1 320px;
+    min-width: 280px;
+    background: #fff;
+    border-radius: 10px;
+    padding: 25px 30px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    text-align: center;
+    height: 75vh;
+}
+.profile-info-card img#profileImageMain {
+    width: 120px; height: 120px; border-radius: 50%;
+    margin: 0 auto 20px auto;
+    border: 4px solid #7e47b8;
+    object-fit: cover;
+    display: block;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+html.dark-theme-active .profile-info-card img#profileImageMain {
+    border-color: #bb86fc;
+    box-shadow: 0 2px 8px rgba(255,255,255,0.1);
+}
+.profile-info-card h2#profileName {
+    color: #2c3e50; margin-bottom: 8px; font-size: 1.8rem; font-weight: 600;
+}
+html.dark-theme-active .profile-info-card h2#profileName { color: #f5f5f5; }
+.profile-info-card p#profileEmail {
+    color: #555; margin-bottom: 12px; font-size: 1rem;
+}
+html.dark-theme-active .profile-info-card p#profileEmail { color: #ccc; }
+.profile-info-card .member-since {
+    font-size: 0.8rem; color: #777; margin-top: 10px;
+}
+html.dark-theme-active .profile-info-card .member-since { color: #aaa; }
+
+.profile-actions-card {
+    flex: 1 1 380px;
+    min-width: 300px;
+    background: #fff;
+    border-radius: 10px;
+    padding: 20px 25px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    height: 75vh;
+}
+.profile-actions-card .card-title {
+    font-size: 1.25rem;
+    color: #34495e;
+    margin-top: 0;
+    margin-bottom: 20px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #e7e7e7;
+}
+html.dark-theme-active .profile-actions-card .card-title {
+    border-bottom-color: #444;
+}
+
+.profile-action-buttons .btn,
+.profile-theme-settings .theme-toggle-item {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    padding: 12px 15px;
+    margin-bottom: 10px;
+    border-radius: 8px;
+    text-align: left;
+    font-size: 0.95rem;
+}
+.profile-action-buttons .btn i,
+.profile-theme-settings .theme-toggle-item i {
+    margin-right: 12px;
+    width: 20px;
+    text-align: center;
+    font-size: 1.1em;
+}
+
+.profile-theme-settings .theme-toggle-item {
+    justify-content: space-between;
+    background-color: #f8f9fa;
+    border: 1px solid #e9ecef;
+    color: #495057;
+}
+html.dark-theme-active .profile-theme-settings .theme-toggle-item {
+    background-color: #3a3a3a;
+    border-color: #555;
+    color: #e0e0e0;
+}
+
+/* ==========================================================================
+   Styling Toggle Switch Tema
+   ========================================================================== */
+.theme-toggle-switch { position: relative; display: inline-block; width: 50px; height: 26px; }
+.theme-toggle-switch input { opacity: 0; width: 0; height: 0; }
+.theme-slider { position: absolute; cursor: pointer; top: 0; left: 0; right: 0; bottom: 0; background-color: #ccc; transition: .4s; border-radius: 26px; }
+.theme-slider:before { position: absolute; content: ""; height: 20px; width: 20px; left: 3px; bottom: 3px; background-color: white; transition: .4s; border-radius: 50%; }
+input:checked + .theme-slider { background-color: #7e47b8; }
+html.dark-theme-active input:checked + .theme-slider { background-color: #bb86fc; }
+input:checked + .theme-slider:before { transform: translateX(24px); }
+
+/* ==========================================================================
+   Sidebar Toggle
+   ========================================================================== */
+.sidebar {
+    transition: margin-left 0.3s ease-in-out;
+    flex-shrink: 0;
+}
+body.sidebar-hidden .sidebar {
+    margin-left: -200px;
+}
+
+.header-left h2.app-title-toggle {
+    cursor: pointer;
+    user-select: none;
+}
+
+/* ==========================================================================
+   Penyesuaian Responsive Profil & Sidebar
+   ========================================================================== */
+@media (max-width: 768px) {
+    .profile-page-container {
+        flex-direction: column;
+    }
+    .profile-info-card, .profile-actions-card {
+        flex-basis: 100%;
+        width: 100%;
+    }
+    body.sidebar-hidden .sidebar {
+      margin-left: 0;
+    }
+}
+
+/* ==========================================================================
+   Filter Riwayat
+   ========================================================================== */
+.filters-container .form-group label[for="filterHistoryType"] {
+}
+.filters-container select#filterHistoryType {
+    min-width: 180px;
+}
+
+/* ==========================================================================
+   Laporan Page Styles
+   ========================================================================== */
+.report-chart-widget {
+    margin-bottom: 20px;
+}
+/* .report-performance-filter {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+    margin-bottom: 10px;
+    flex-wrap: nowrap;
+    padding: 5px 0;
+} */
+
+.report-performance-filter label {
+    font-size: 0.85rem;
+    white-space: nowrap;
+    margin-right: 5px;
+    color: #555;
+}
+html.dark-theme-active .report-performance-filter label { color: #ccc; }
+
+.report-performance-filter .filter-preset-buttons {
+    display: flex;
+    gap: 5px;
+}
+.report-performance-filter .filter-preset-buttons .btn {
+    padding: 5px 10px;
+    font-size: 0.75rem;
+    height: 30px;
+    background-color: #f0f3f7;
+    color: #555;
+    border: 1px solid #dfe3e8;
+}
+.report-performance-filter .filter-preset-buttons .btn.active,
+.report-performance-filter .filter-preset-buttons .btn:hover {
+    background-color: #7e47b8;
+    color: white;
+    border-color: #7e47b8;
+}
+html.dark-theme-active .report-performance-filter .filter-preset-buttons .btn {
+    background-color: #3a3a3a;
+    color: #ccc;
+    border-color: #555;
+}
+html.dark-theme-active .report-performance-filter .filter-preset-buttons .btn.active,
+html.dark-theme-active .report-performance-filter .filter-preset-buttons .btn:hover {
+    background-color: #bb86fc;
+    color: #121212;
+    border-color: #bb86fc;
+}
+
+
+.report-performance-filter input[type="text"] {
+    padding: 5px 8px;
+    font-size: 0.8rem;
+    height: 30px;
+    border: 1px solid #d1d5db;
+    border-radius: 4px;
+    width: 150px; /* Atau sesuaikan */
+    margin-left: 5px;
+}
+html.dark-theme-active .report-performance-filter input[type="text"]{
+    background-color: #373737;
+    border-color: #555;
+    color: #e0e0e0;
+}
+
+
+.report-performance-filter .btn-apply-perf {
+    padding: 5px 12px;
+    font-size: 0.8rem;
+    height: 30px;
+    margin-left: 5px;
+}
+
+
+.report-tasks-by-date-section {
+    /* height: calc(100vh - 55px - 30px - 40px - 250px - 20px - 60px); Sesuaikan jika perlu */
+}
+
+.report-interactive-area {
+    display: flex;
+    gap: 20px;
+    height: 100%; /* Atau tinggi spesifik */
+    max-height: 60vh; /* Batasi tinggi agar tidak terlalu panjang */
+}
+
+.report-task-list-container {
+    flex: 2; /* Lebih banyak ruang untuk daftar tugas */
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+}
+.selected-date-indicator {
+    font-size: 0.95rem;
+    font-weight: 500;
+    color: #34495e;
+    margin-bottom: 10px;
+    padding-bottom: 5px;
+    border-bottom: 1px solid #eee;
+}
+html.dark-theme-active .selected-date-indicator {
+    color: #f5f5f5;
+    border-bottom-color: #444;
+}
+
+#reportTasksList {
+    flex-grow: 1;
+    overflow-y: auto;
+    padding-right: 8px; /* Untuk scrollbar */
+}
+#reportTasksList::-webkit-scrollbar  {
+    display: none;
+}
+#reportTasksList .task-item-card { /* Style card tugas mungkin sudah ada, ini hanya contoh */
+    font-size: 0.8rem; /* Lebih kecil di laporan */
+    padding: 10px;
+}
+#reportTasksList .task-item-card .task-details strong { font-size: 0.9rem; }
+
+
+.report-calendar-container {
+    flex: 1;
+    min-width: 280px; /* Agar kalender tidak terlalu sempit */
+    background-color: #f9fafb;
+    border-radius: 6px;
+    padding: 15px;
+    border: 1px solid #e7eaec;
+    box-shadow: 0 1px 2px rgba(0,0,0,0.05);
+    height: fit-content; /* Agar tingginya pas dengan konten kalender */
+}
+html.dark-theme-active .report-calendar-container {
+    background-color: #373737;
+    border-color: #555;
+}
+
+.calendar-header-report {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+    font-weight: 600;
+    font-size: 1.05rem;
+    color: #2c3e50;
+}
+html.dark-theme-active .calendar-header-report { color: #f0f0f0; }
+.calendar-header-report button {
+    background: none;
+    border: none;
+    font-size: 1.2rem;
+    color: #7e47b8;
+    cursor: pointer;
+    padding: 5px 8px;
+    border-radius: 4px;
+}
+.calendar-header-report button:hover { background-color: #f0e9f7; }
+html.dark-theme-active .calendar-header-report button { color: #bb86fc; }
+html.dark-theme-active .calendar-header-report button:hover { background-color: rgba(187, 134, 252, 0.1); }
+
+.calendar-days-grid-report {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 5px;
+    text-align: center;
+}
+.calendar-day-name-report {
+    font-weight: 500;
+    font-size: 0.8rem;
+    color: #555;
+    padding-bottom: 5px;
+}
+html.dark-theme-active .calendar-day-name-report { color: #bbb; }
+
+.calendar-day-report {
+    padding: 8px 5px;
+    font-size: 0.85rem;
+    border-radius: 50%; /* Buat lingkaran */
+    cursor: pointer;
+    transition: background-color 0.2s, color 0.2s;
+    width: 32px; /* Ukuran tetap untuk lingkaran */
+    height: 32px; /* Ukuran tetap untuk lingkaran */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto; /* Pusatkan lingkaran */
+    border: 1px solid transparent; /* Untuk hover border */
+}
+.calendar-day-report:hover {
+    background-color: #eef1f5;
+    border-color: #d1d5db;
+}
+.calendar-day-report.today {
+    background-color: #7e47b8;
+    color: white;
+    font-weight: bold;
+}
+.calendar-day-report.selected {
+    background-color: #34495e;
+    color: white;
+    border-color: #2c3e50;
+}
+html.dark-theme-active .calendar-day-report:hover {
+    background-color: #4f4f4f;
+    border-color: #666;
+}
+html.dark-theme-active .calendar-day-report.today {
+    background-color: #bb86fc;
+    color: #121212;
+}
+html.dark-theme-active .calendar-day-report.selected {
+    background-color: #5fcf80; /* Contoh warna selected dark mode */
+    color: #121212;
+    border-color: #5fcf80;
+}
+
+/* Penyesuaian Responsive untuk Laporan & Chatbot */
+@media (max-width: 992px) {
+    .report-interactive-area {
+        flex-direction: column;
+        max-height: none; /* Hapus batasan tinggi di tablet/mobile */
+    }
+    .report-calendar-container {
+        order: -1; /* Pindahkan kalender ke atas di tampilan sempit */
+        margin-bottom: 15px;
+    }
+}
+
+/* Laporan Page - Calendar Markers */
+.calendar-day-report {
+    position: relative; /* Diperlukan untuk positioning absolut marker */
+}
+
+.calendar-markers-container {
+    position: absolute;
+    bottom: 2px; /* Sesuaikan posisi vertikal */
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 2px; /* Jarak antar marker jika ada lebih dari satu */
+}
+
+.calendar-marker {
+    display: inline-block;
+    width: 6px; /* Ukuran marker */
+    height: 6px; /* Ukuran marker */
+    border-radius: 50%;
+}
+
+.marker-active { background-color: #2196f3; /* Biru untuk aktif */ }
+.marker-completed { background-color: #4caf50; /* Hijau untuk selesai */ }
+.marker-overdue { background-color: #f44336; /* Merah untuk terlewat */ }
+
+html.dark-theme-active .marker-active { background-color: #64b5f6; }
+html.dark-theme-active .marker-completed { background-color: #81c784; }
+html.dark-theme-active .marker-overdue { background-color: #ef5350; }
+
+/* Penyesuaian agar marker tidak mengganggu teks tanggal */
+.calendar-day-report span.day-number { /* Jika Anda membungkus nomor tanggal dalam span */
+    position: relative;
+    z-index: 1;
+}
+
+/* MODAL PDF REPORT STYLES - BARU */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.6);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 2000;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease, visibility 0s 0.3s;
+}
+.modal-overlay.show {
+    opacity: 1;
+    visibility: visible;
+    transition: opacity 0.3s ease, visibility 0s 0s;
+}
+.modal-container {
+    background: #fff;
+    padding: 25px 30px;
+    border-radius: 10px;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.2);
+    width: 100%;
+    max-width: 500px;
+    transform: scale(0.95);
+    transition: transform 0.3s ease;
+}
+.modal-overlay.show .modal-container {
+    transform: scale(1);
+}
+.modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #e9ecef;
+    padding-bottom: 15px;
+    margin-bottom: 20px;
+}
+.modal-header h3 {
+    margin: 0;
+    font-size: 1.25rem;
+    color: #343a40;
+}
+.modal-close-btn {
+    background: none;
+    border: none;
+    font-size: 1.6rem;
+    color: #6c757d;
+    cursor: pointer;
+}
+.modal-body .form-group {
+    margin-bottom: 20px;
+}
+.modal-body .checkbox-group {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+}
+.modal-body .checkbox-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 0.9rem;
+}
+.modal-footer {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+    margin-top: 25px;
+    padding-top: 15px;
+    border-top: 1px solid #e9ecef;
+}
+
+/* DARK THEME FOR MODAL */
+html.dark-theme-active .modal-container {
+    background: #2c2c2c;
+    border: 1px solid #444;
+}
+html.dark-theme-active .modal-header {
+    border-bottom-color: #444;
+}
+html.dark-theme-active .modal-header h3 {
+    color: #f5f5f5;
+}
+html.dark-theme-active .modal-close-btn {
+    color: #bdbdbd;
+}
+html.dark-theme-active .modal-body .checkbox-item {
+    color: #e0e0e0;
+}
+html.dark-theme-active .modal-footer {
+    border-top-color: #444;
+}
+
+/* PAGE TITLE CONTAINER */
+.page-title-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    margin-bottom: 15px; /* Sesuaikan dengan .main h2.page-title margin-bottom */
+}
+.page-title-container .page-title {
+    margin-bottom: 0; /* Hapus margin bawah karena sudah diatur oleh container */
+    border-bottom: none; /* Hapus border karena sudah diatur oleh container */
+}
