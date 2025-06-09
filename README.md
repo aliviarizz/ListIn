@@ -2,10 +2,10 @@
 
 ## 📂 Daftar Isi Folder
 - **Dokumen UAS** 📄
-  - 📘 Dokumentasi Awal Proyek Pengembangan Basis Data Toko Risky Bawang dan Palawija.pdf
+  - 📘 Dokumentasi Awal Proyek Pengembangan ListIn: Manajemen Tugas.pdf
   - 📙 Fitur Database[1].pdf
-  - 📗 LAPORAN TUGAS UAS kelompok 2.pdf
-  - 📕 MANUAL PENGGUNAAN SISTEM MANAJEMEN.pdf
+  - 📗 LAPORAN TUGAS UAS kelompok 9.pdf
+  - 📕 MANUAL PENGGUNAAN SISTEM ListIn.pdf
 - **Folder Basic** 📁
   - 🔧 Codingan composer
 
@@ -37,7 +37,7 @@ For detailed documentation, refer to the files linked below (written in Indonesi
 ---
 
 ## 📝 Deskripsi
-This repository is the collaborative work of **Kelompok 2** for the **UAS Project**. It includes:
+This repository is the collaborative work of **Kelompok 9** for the **UAS Project**. It includes:
 - 📌 Initial project documentation.
 - 📌 Database features.
 - 📌 Group project report.
