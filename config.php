@@ -27,6 +27,9 @@ define('SMTP_SECURE', 'tls');
 define('EMAIL_FROM_ADDRESS', 'email_anda@gmail.com'); 
 define('EMAIL_FROM_NAME', 'Nama Aplikasi Anda');
 
+// Bot Manager
+define('GEMINI_API_KEY', 'MASUKKAN_API_KEY_GEMINI_ANDA'); // GANTI DENGAN KUNCI API GEMINI ANDA
+
 // Pengaturan Error Reporting
 error_reporting(E_ALL & ~E_DEPRECATED & ~E_USER_DEPRECATED); 
 ini_set('display_errors', 1); // Set ke 0 di lingkungan produksi
