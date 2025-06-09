@@ -204,12 +204,11 @@ $is_auth_page = in_array($current_page, $auth_pages);
     <?php if ($is_auth_page): ?>
         <link rel="stylesheet" href="css/auth.css?v=<?php echo time(); ?>">
     <?php endif; ?>
-
+    
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png?v=3">
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png?v=3">
     <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png?v=3">
-    <link rel="manifest" href="/site.webmanifest?v=2">
-    
+    <link rel="manifest" href="/site.webmanifest?v=3">
 </head>
 <body class="<?php echo $is_auth_page ? 'auth-page' : ''; ?>">
 
@@ -222,7 +221,8 @@ $is_auth_page = in_array($current_page, $auth_pages);
             <h2 class="app-title-toggle" id="appTitleToggle" title="Toggle Sidebar">List In</h2>
         </div>
         <?php
-        $hide_search_bar_pages = ['profil.php', 'edit_profil.php', 'ubah_password.php', 'tambah_tugas.php', 'edit_tugas.php', 'dashboard.php', 'laporan.php']; // Tambah laporan.php
+        // MODIFIKASI: Tambahkan bot_manager.php
+        $hide_search_bar_pages = ['profil.php', 'edit_profil.php', 'ubah_password.php', 'tambah_tugas.php', 'edit_tugas.php', 'dashboard.php', 'laporan.php', 'bot_manager.php'];
         $hide_search_bar = in_array($current_page, $hide_search_bar_pages);
         $search_action_page = 'manajemen_tugas.php';
         if ($current_page == 'riwayat.php') $search_action_page = 'riwayat.php';
