@@ -11,6 +11,8 @@ $is_auth_page_sidebar = in_array($current_page, $auth_pages_sidebar);
                 <a href="tambah_tugas.php" class="<?php echo ($current_page == 'tambah_tugas.php') ? 'active' : ''; ?>"><i class="fas fa-plus-circle"></i> <span>Tambah Tugas</span></a>
                 <a href="laporan.php" class="<?php echo ($current_page == 'laporan.php') ? 'active' : ''; ?>"><i class="fas fa-chart-pie"></i> <span>Laporan</span></a>
                 <a href="riwayat.php" class="<?php echo ($current_page == 'riwayat.php') ? 'active' : ''; ?>"><i class="fas fa-history"></i> <span>Riwayat</span></a>
+                <!-- BARU: Menu Chatbot -->
+                <a href="bot_manager.php" class="<?php echo ($current_page == 'bot_manager.php') ? 'active' : ''; ?>"><i class="fas fa-robot"></i> <span>Bot Manager</span></a>
             </nav>
             <a href="logout.php" class="logout" id="logoutButton"><i class="fas fa-sign-out-alt"></i> <span>Keluar</span></a>
         </aside>
